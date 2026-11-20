@@ -7,7 +7,7 @@ Audio Path information, quick links to the current album and album artist,
 newest-first album years, and optional artist photos.
 It keeps Sony's familiar interface.
 
-**Walkman One 3.02 must already be installed. Patchman does not install Walkman One.**
+**Required installation order: return fully to stock Sony firmware, install a fresh official Walkman One 3.02, then install Patchman. Follow this order even if Walkman One is already installed. Patchman does not install Walkman One.**
 
 **Go to requires Playback Settings > Artist List Display > Album Artist.**
 The Artist setting is not supported by this feature.
@@ -27,6 +27,8 @@ The Artist setting is not supported by this feature.
 - [Audio Path](#audio-path)
 - [Go to Album and Album Artist](#go-to-album-and-album-artist)
 - [Update or remove Patchman](#update-or-remove-patchman)
+- [Required clean setup](#required-clean-setup)
+- [If Walkman One is not accepted](#if-your-walkman-one-installation-is-not-accepted)
 - [Problems and solutions](#problems-and-solutions)
 - [Testing and limits](#testing-and-limits)
 - [Questions](#questions)
@@ -37,7 +39,7 @@ The Artist setting is not supported by this feature.
 | Item | Requirement |
 | --- | --- |
 | Player | Sony NW-A55 |
-| Firmware | Compatible Walkman One 3.02, already installed |
+| Firmware | Fresh supported Walkman One 3.02, installed after a full stock return |
 | Computer | Windows, to run the included installer |
 | Connection | A USB cable that supports data transfer |
 | Storage | Free space on the player's internal storage |
@@ -79,10 +81,32 @@ That menu no longer offers the spectrum analyzer or level meters.
 
 ## Installation
 
+### Required clean setup
+
+**Before you install this release, return fully to stock Sony firmware and install Walkman One again from its official download. This preparation is required even if your player already shows Walkman One 3.02.**
+
+Follow this order:
+
+**Remove active Patchman, if present > matching StockRevert > official Sony NW-A55 firmware > fresh official Walkman One A50 installation > Patchman.**
+
+A settings reset alone is not a return to stock firmware. StockRevert alone is not the whole return process: complete the official Sony update too, following the StockRevert instructions. Factory reset is a separate, optional step that erases internal user data.
+
+1. Back up your music and important files to the PC. Also copy `CFW`, `PEQ` and `ARTIST-PHOTOS`, if present. A firmware backup tool may not include all music or the whole internal storage.
+2. Turn the player off and remove the microSD card. Keep it out during the reset and firmware installations.
+3. If Patchman is already installed, remove it with the matching Patchman **Remove** package first. If the installation was only rejected by the version check and you have no active Patchman installation, skip this step.
+4. Copy the **StockRevert** package for your current **Walkman One A50** firmware to the PC. It is normally in `CFW/StockRevert` on internal storage. Follow the instructions included with that package. Do not use a StockRevert package for a different model or firmware.
+5. Complete the stock return by applying the official Sony firmware update for your **NW-A55**, as described in the StockRevert instructions. StockRevert and the Sony update are separate parts of the return process. See the [MrWalkman stock-return guide](https://www.mrwalkman.com/p/faq.html).
+6. **Optional, for a full reset of user settings and internal storage:** on the stock player, open **Settings > Device Settings (under Basic Settings) > Reset/Format > Restore to Factory Configuration**. This erases transferred files from internal storage and starts the initial setup again. Use it only after checking your backup. Do not format the player from Windows. This reset does not by itself prove that every hidden mod file has been removed. See the [Sony NW-A55 reset guide](https://helpguide.sony.net/dmp/nwa50/v1/en/contents/TP0002342881.html).
+7. Download **Walkman One for the NW-A50 series** again from the [official MrWalkman page](https://www.mrwalkman.com/p/walkman-one-a50series.html). Extract the whole archive and follow its installation instructions, including any required tuning steps. Do not use a package for the WM1A/Z, ZX300 or another Walkman series.
+8. Confirm that Walkman One starts normally and appears in **Unit Information**. For this first test, do not copy your old `CFW/settings.txt` or other old mod files back yet. A specific sound signature such as Neutral or WM1Z is not a confirmed fix for the file mismatch.
+9. Install Patchman using the installation steps below. On the first cable-free start, play wired PCM/FLAC audio before another restart. After testing, restore your profiles and photos, then reapply your personal settings as needed.
+
+Do not install Patchman directly over an old or unknown Walkman One setup. Complete the preparation above first. The installer checks known files, but this check cannot prove that you followed every preparation step.
+
 ### Before you start
 
 1. Confirm that the player is an **NW-A55**.
-2. Confirm that compatible **Walkman One 3.02** is already installed.
+2. Complete **Required clean setup** above, even if Walkman One 3.02 is already installed. Confirm that the fresh Walkman One installation starts normally.
 3. Download `Patchman_NW-A55.zip`.
 4. Extract the **whole ZIP** to a new folder on your computer.
 
@@ -134,6 +158,10 @@ If this is the first time the Patchman PEQ system is installed on the player:
 3. Play a normal PCM/FLAC track and confirm that sound plays.
 4. Do this **before the next full restart**. It completes the first playback
    check.
+
+USB-connected boots defer the first playback check. On the first start without
+USB, play wired PCM/FLAC audio before restarting again. No fixed 30-second
+playback time is required; the check needs successful audio output.
 
 An update keeps an existing successful PEQ playback check when the audio
 components match. You do not need to repeat this first-install process for
@@ -453,15 +481,19 @@ does not match, the feature stops instead of guessing a destination.
 
 ### Update an existing installation
 
-For a supported existing Patchman installation, run the new package's
-`Install/FirmwareUpdateTool.exe` directly. You do not need to remove the old
-version first.
+If you choose to install this release over a player that has used Patchman before,
+back up your files and follow [Required clean setup](#required-clean-setup).
+Remove active Patchman with its matching remover, return fully to stock, install
+fresh official Walkman One, and only then run this release's Install tool.
+Do not skip this preparation because the version number already says 3.02.
 
-Upgrade checks cover v1.0-stable and the known development versions used during
-this project. Unknown modified players or launchers can be rejected.
+The installer contains compatibility checks for known earlier files, but those
+checks do not replace the required preparation. Unknown modified players or
+launchers can be rejected.
 
-Supported updates keep music, PEQ profiles and selection, PEQ on/off preference,
-Cassette Screen preference, and Walkman One sound signature and Plus mode choices.
+The Patchman installer itself keeps supported profiles and preferences. However,
+a factory reset erases internal user files, and a fresh setup may reset settings.
+Keep your backup on the PC and restore your profiles/photos after verification.
 
 **Patchman 1.0 is not required before 1.1.** The 1.1 installer includes the full
 Patchman feature set. See the testing section for first-install hardware status.
@@ -479,6 +511,14 @@ player interface**. It does **not** return to stock Sony firmware.
 Music, PEQ profile files and the saved cassette preference are kept.
 Use the combined package's remover, not an old remover for only one feature.
 Removing Patchman is also different from returning to Patchman v1.0.
+
+## If your Walkman One installation is not accepted
+
+If `Patchman-install.log` says `ERROR: Unsupported Walkman One player version`, the installer has stopped before activating Patchman. The player file does not match the supported file. This message does not prove that your sound signature is the cause.
+
+Check that you completed [Required clean setup](#required-clean-setup), using the official NW-A50 Walkman One package. One NW-A55 user reported that returning to stock and reinstalling the official Walkman One package resolved this error.
+
+If the error remains after these steps, stop and share the latest install log, including the `player: expected=... actual=...` line and the exact Walkman One package name. Do not bypass the file check. Patchman does not install or repair Walkman One itself.
 
 ## Problems and solutions
 
@@ -553,11 +593,11 @@ using a local lossless library and wired headphones.
 | Cassette Screen and saved preference | Tested on the author's device |
 | Audio Path and horizontal swipes | Tested on the author's device |
 | Go to with Album Artist display | Tested using the route kept in v1.1 |
-| Package checks | Host/ARM metadata and photo tests, layout tests, upgrade/removal/return and UPG round trips passed for the confirmed payload; final ZIP integrity and payload equality checked |
+| Package checks | Earlier host/ARM metadata, photo and layout checks; 10 full-installer tests covering fresh installation, permissions, USB/playback checks, upgrade, removal and return; UPG round trips and final ZIP equality checks |
 | Newest-first album years and hidden All | Confirmed on the author's device |
 | Thin indicator and album scroll boundaries | Confirmed on the author's device |
 | Internal artist photos, loading without album-cover flash and error fallback | Confirmed on the author's device |
-| First installation on clean Walkman One | Not yet verified on hardware |
+| First installation after stock return, factory reset and fresh Walkman One | Reported working by the author on NW-A55 with Neutral tuning |
 | Bluetooth playback and PEQ | Not tested; the author listens by wired headphones |
 | MP3, AAC, DSD and every other playback mode | Not fully tested by this project |
 | Other players and firmware versions | Not verified |
@@ -615,11 +655,17 @@ MrWalkman firmware release.
 
 ## Release package
 
-This v1.1-stable package contains the same Install and Remove firmware payloads
-as the device-confirmed internal-photo build with the loading-flash fix. The final release updates the
-package name, installer information and this README. It does not add new runtime
-code. Users already running that confirmed build do not need to reinstall only
-to receive the stable label.
+This v1.1-stable package uses the complete installer confirmed by the author
+after a stock return, factory reset and fresh Walkman One installation. It
+explicitly sets the external library UI folder permissions and defers the first
+PEQ playback check during USB-connected boots. The confirmed audio library,
+profile parser, player UI and feature binaries are unchanged.
+
+Installation instructions for this release require a complete stock return and
+a fresh official Walkman One installation before Patchman, including for players
+that already have Walkman One or an earlier Patchman installation. Factory reset
+remains a separate optional data-erasing step. The abandoned security-test changes
+are not included.
 
 The public ZIP contains Install and Remove. Older working packages remain in the
 maintainer's backups. Remove returns to Walkman One, not to an older Patchman.
