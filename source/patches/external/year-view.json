@@ -1,0 +1,140 @@
+{
+  "before_sha256": "ad401ab281c68aadeed41fe36bd1fae018a430af14d0eccabbf41853823bf564",
+  "after_sha256": "75a47ea8ae1acc4644f2b30260e993bfc1a7b7264db660ac6ecb8af91cc4e07e",
+  "edits": [
+    {
+      "start": 4,
+      "delete": 0,
+      "insert": [
+        "import \"file:///data/sony-peq/runtime/AlbumYearCache.js\" as Years\n"
+      ]
+    },
+    {
+      "start": 8,
+      "delete": 1,
+      "insert": [
+        "import \"qrc:/framework/ContentsBrowseCommon.js\" as Script\n"
+      ]
+    },
+    {
+      "start": 12,
+      "delete": 0,
+      "insert": [
+        "  property bool modYearList: controller && controller.screenID === \"ArtistAlbumList\"\n",
+        "  property int modSavedBoundsBehavior: -1\n",
+        "  function modApplyBounds() {\n",
+        "    if (typeof listView === \"undefined\" || !listView) return\n",
+        "    if (modYearList) {\n",
+        "      if (modSavedBoundsBehavior < 0) modSavedBoundsBehavior = listView.boundsBehavior\n",
+        "      listView.boundsBehavior = Flickable.StopAtBounds\n",
+        "    } else if (modSavedBoundsBehavior >= 0) {\n",
+        "      listView.boundsBehavior = modSavedBoundsBehavior\n",
+        "      modSavedBoundsBehavior = -1\n",
+        "    }\n",
+        "  }\n",
+        "  onModYearListChanged: modApplyBounds()\n",
+        "  Component.onCompleted: modApplyBounds()\n",
+        "\n",
+        "  function modYear(primary,secondary){\n",
+        "    var id=Number(primary)\n",
+        "    if(!isFinite(id) || id<=2164260864 || id>2181038079)id=Number(secondary)\n",
+        "    return modYearList?Years.year(screen.title,id):\"\"\n",
+        "  }\n",
+        "\n"
+      ]
+    },
+    {
+      "start": 58,
+      "delete": 1,
+      "insert": [
+        "    listView.contentY = Script.setInitialPosition(p.needScrollPositionChange, screen.modYearList && screen.isAllRowExists ? Math.max(0,selected_index-1):selected_index, p.cellHeight + p.separator_height, listView.contentHeight, listView.height, p.lastContentY)\n"
+      ]
+    },
+    {
+      "start": 77,
+      "delete": 1,
+      "insert": [
+        "    stop_animation_duration: screen.modYearList ? 0 : Script.get_ExistJacket_StopAnimationDuration()\n"
+      ]
+    },
+    {
+      "start": 80,
+      "delete": 1,
+      "insert": [
+        "      contentY = Script.setInitialPosition(p.needScrollPositionChange, screen.modYearList && screen.isAllRowExists ? Math.max(0,selected_index-1):selected_index, p.cellHeight + p.separator_height, contentHeight, height, p.lastContentY)\n"
+      ]
+    },
+    {
+      "start": 93,
+      "delete": 1,
+      "insert": [
+        "      property bool modHiddenAll: screen.modYearList && screen.isAllRowExists && index===0\n",
+        "      height: modHiddenAll ? 0 : 85\n",
+        "      visible: !modHiddenAll\n",
+        "      enabled: !modHiddenAll\n",
+        "      clip: modHiddenAll\n"
+      ]
+    },
+    {
+      "start": 163,
+      "delete": 0,
+      "insert": [
+        "          }\n",
+        "          SCmnLabel {\n",
+        "            objectName:\"albumYearLabel\"\n",
+        "            anchors {top:name_text.bottom;left:name_text.left}\n",
+        "            width:200;height:32\n",
+        "            visible:screen.modYearList\n",
+        "            font.pixelSize:viewstyle.textsize.M\n",
+        "            font.weight:Font.Light\n",
+        "            normal_color:viewstyle.textcolor.L2\n",
+        "            verticalAlignment:Text.AlignVCenter\n",
+        "            text:screen.modYear(typeof MainCoverArtRole!==\"undefined\"?MainCoverArtRole:0,MainCoverArtArtistRole)\n"
+      ]
+    },
+    {
+      "start": 258,
+      "delete": 4,
+      "insert": [
+        "  // Chronological album lists use one passive indicator at every list length.\n",
+        "  // Do not instantiate Sony's long-list drag bar in this mode: it switches\n",
+        "  // from a thin indicator to a wide thumb after scrolling starts.\n",
+        "  Loader {\n",
+        "    objectName: \"nativeAlbumScrollLoader\"\n"
+      ]
+    },
+    {
+      "start": 263,
+      "delete": 2,
+      "insert": [
+        "    active: !screen.modYearList\n",
+        "    sourceComponent: Component {\n",
+        "      SCmnScrollBarForContentsList {\n",
+        "        anchors.fill: parent\n",
+        "        flickable: listView\n",
+        "        initial_char_list: screen.initial_char_list\n",
+        "        balloonShow: true\n",
+        "        isAllRowExists: screen.isAllRowExists\n",
+        "      }\n",
+        "    }\n",
+        "  }\n",
+        "  Item {\n",
+        "    id: yearScrollTrack\n",
+        "    objectName: \"albumYearScrollTrack\"\n",
+        "    anchors { top: listView.top; bottom: listView.bottom; right: listView.right; rightMargin: 5 }\n",
+        "    width: 3\n",
+        "    enabled: false\n",
+        "    clip: true\n",
+        "    property real ratio: isFinite(listView.visibleArea.heightRatio) ? listView.visibleArea.heightRatio : 0\n",
+        "    visible: screen.modYearList && screen.visible && listView.count > 0 && height > 0 && ratio > 0 && ratio < 1\n",
+        "    Rectangle {\n",
+        "      objectName: \"albumYearScrollThumb\"\n",
+        "      width: parent.width\n",
+        "      height: Math.min(parent.height, Math.max(20, parent.height * parent.ratio))\n",
+        "      y: Math.max(0, Math.min(parent.height-height, parent.height * (isFinite(listView.visibleArea.yPosition) ? listView.visibleArea.yPosition : 0)))\n",
+        "      color: viewstyle.textcolor.L1\n",
+        "    }\n"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "before_sha256": "7675f7d234b0abadf2909f2e9a274d51fe1d02620d776c4ac6d2ce865ecac358",
+  "after_sha256": "80a34a619b77165ba66018cc845c7f0ba24b21774caab303c2264c2b4bf9323c",
+  "edits": [
+    {
+      "start": 46,
+      "delete": 0,
+      "insert": [
+        "[ ! -x /system/vendor/sony-peq/boot.sh ] || /system/vendor/sony-peq/boot.sh\n",
+        "\n"
+      ]
+    }
+  ]
+}

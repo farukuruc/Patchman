@@ -1,0 +1,28 @@
+{
+  "before_sha256": "8480df957fdfb9b1f1bf6f7dd427ef1fd5e129c2119fa71a5fa4aaa4c35d2578",
+  "after_sha256": "3c3c872290d110bbd05a9b93ce417badce84faa1c98caaa144cfbb408825f0ea",
+  "edits": [
+    {
+      "start": 8,
+      "delete": 1,
+      "insert": [
+        "import \"qrc:/framework/ContentsBrowseCommon.js\" as Script\n"
+      ]
+    },
+    {
+      "start": 122,
+      "delete": 0,
+      "insert": [
+        "            visible: artistPhoto.showAlbumCover\n",
+        "          }\n",
+        "          ArtistPhoto {\n",
+        "            id: artistPhoto\n",
+        "            objectName: \"optionalArtistPhoto\"\n",
+        "            width: 84; height: 84\n",
+        "            anchors { top: parent.top; left: parent.left }\n",
+        "            artistName: NameQstringRole\n",
+        "            photoAllowed: screen.visible && controller && controller.screenID === \"ArtistList\"\n"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "before_sha256": "6fbb594861db1be8b65a26cd37fb15a9639ec77c83b1f76f97548a2bf7f7a99d",
+  "after_sha256": "c138cc3517d334ab6b94d549d8b26fb8a4a588402995767d3dbe249fb1b6f812",
+  "edits": [
+    {
+      "start": 0,
+      "delete": 3,
+      "insert": []
+    },
+    {
+      "start": 4,
+      "delete": 1,
+      "insert": []
+    },
+    {
+      "start": 9,
+      "delete": 1,
+      "insert": []
+    },
+    {
+      "start": 11,
+      "delete": 773,
+      "insert": [
+        "id: screen\n",
+        "visible: true\n",
+        "property var audioPathWindow: null\n",
+        "property bool audioPathActive: false\n",
+        "property var bookmarkList\n",
+        "property var contextList\n",
+        "property var bookmarkDialogList\n",
+        "property int bookmarkListNo: -1\n",
+        "property string screen_title: \"Audio Path\"\n",
+        "property int nodeCount\n",
+        "property bool sortenable\n",
+        "property var playlistDialogList\n",
+        "property var update_db_counter\n",
+        "property bool is_visible_bottom_separator\n",
+        "signal touchListAt(int index)\n",
+        "signal contextMenuSelected(int select_context_index, int menu_id)\n",
+        "signal dialogMenuSelected(variant select_dialog_index)\n",
+        "signal createContextMenu()\n",
+        "signal prevScreen()\n",
+        "signal nextScreen()\n",
+        "signal sortEnd()\n",
+        "signal playlistSelected(variant playlist_id)\n",
+        "signal showBookmarkDialog()\n",
+        "signal showPlaylistDialog()\n",
+        "signal setScrollPositionResume\n",
+        "signal resetScrollPositionResume\n",
+        "function openBookmakSelectedDialog() {}\n",
+        "function closeBookmarkSelectDialog() {}\n",
+        "function openPlaylistSelectDialog() {}\n",
+        "function closePlaylistSelectDialog() {}\n",
+        "Loader {\n",
+        "id: pathLoader\n",
+        "anchors.fill: parent\n",
+        "active: screen.audioPathActive && screen.visible\n",
+        "source: \"file:///system/vendor/sony-peq/ui/AudioPath.qml\"\n",
+        "onLoaded: {\n",
+        "item.playerWindow = Qt.binding(function(){return screen.audioPathWindow})\n"
+      ]
+    },
+    {
+      "start": 785,
+      "delete": 0,
+      "insert": [
+        "}\n",
+        "SwipeSelector {\n",
+        "id: swipeSelector\n",
+        "objectName: \"swipeSelector\"\n",
+        "anchors.fill: pathLoader\n",
+        "enabled: screen.audioPathActive && screen.visible\n",
+        "target: pathLoader.item ? pathLoader.item.scrollArea : null\n",
+        "}\n",
+        "Connections { target: controller\n",
+        "onAvailable: screen.audioPathActive = true\n",
+        "onUnavailable: screen.audioPathActive = false\n",
+        "}\n",
+        "}\n"
+      ]
+    }
+  ]
+}

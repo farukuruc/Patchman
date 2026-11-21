@@ -1,0 +1,102 @@
+{
+  "input_sha256": "f515f75e48e84460c18707e5408c6c09c26a77a13deccdee23e220dc81f49124",
+  "output_sha256": "6d92e5ab8977baab9cc2c1e8662555b070fdf4a00e2895cd28bc72fc230823a0",
+  "resources": [
+    {
+      "offset": 6222924,
+      "slot": 2759,
+      "compressed": false,
+      "patch": "patches/qml/5ef44c.json"
+    },
+    {
+      "offset": 6258065,
+      "slot": 4222,
+      "compressed": true,
+      "patch": "patches/qml/5f7d91.json"
+    },
+    {
+      "offset": 6347667,
+      "slot": 1689,
+      "compressed": true,
+      "patch": "patches/qml/60db93.json"
+    },
+    {
+      "offset": 6351534,
+      "slot": 2896,
+      "compressed": false,
+      "patch": "patches/qml/60eaae.json"
+    },
+    {
+      "offset": 6363273,
+      "slot": 6092,
+      "compressed": true,
+      "patch": "patches/qml/611889.json"
+    },
+    {
+      "offset": 6495070,
+      "slot": 923,
+      "compressed": true,
+      "patch": "patches/qml/631b5e.json"
+    },
+    {
+      "offset": 6497061,
+      "slot": 2699,
+      "compressed": true,
+      "patch": "patches/qml/632325.json"
+    },
+    {
+      "offset": 6530536,
+      "slot": 3703,
+      "compressed": true,
+      "patch": "patches/qml/63a5e8.json"
+    },
+    {
+      "offset": 6564958,
+      "slot": 3375,
+      "compressed": true,
+      "patch": "patches/qml/642c5e.json"
+    },
+    {
+      "offset": 6568333,
+      "slot": 3267,
+      "compressed": true,
+      "patch": "patches/qml/64398d.json"
+    },
+    {
+      "offset": 6583604,
+      "slot": 3918,
+      "compressed": true,
+      "patch": "patches/qml/647534.json"
+    },
+    {
+      "offset": 6593556,
+      "slot": 4859,
+      "compressed": true,
+      "patch": "patches/qml/649c14.json"
+    },
+    {
+      "offset": 6666790,
+      "slot": 2319,
+      "compressed": true,
+      "patch": "patches/qml/65ba26.json"
+    },
+    {
+      "offset": 8634648,
+      "slot": 5772,
+      "compressed": true,
+      "patch": "patches/qml/83c118.json"
+    }
+  ],
+  "external": [
+    {
+      "resource_offset": 6564958,
+      "patch": "patches/external/photo-view.json",
+      "output": "Artists.qml"
+    },
+    {
+      "resource_offset": 6530536,
+      "patch": "patches/external/year-view.json",
+      "output": "ArtistAlbums.qml"
+    }
+  ]
+}

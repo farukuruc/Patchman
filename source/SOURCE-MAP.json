@@ -1,0 +1,312 @@
+{
+  "version": "1.1-stable",
+  "release_zip_sha256": "8028186b7eae489c4394ad8ffccd300b54c21fdc7903ff5397dcde22b434f7ce",
+  "qml_roundtrip": "exact released player reconstructed from source edits",
+  "files": [
+    {
+      "path": "patches/qml/5ef44c.json",
+      "sha256": "7aa5e001140db7c42da0ba8c87858b86167fe615a4ee6363da732ee59c8776a5",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/5f7d91.json",
+      "sha256": "ad83bef406d11baa6756fb3d4dd3af3f5f188347d62bb6ecec47c61825ed85fb",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/60db93.json",
+      "sha256": "f51de068f99bd3a132919bc095fc4a55fc51df75277beadc9f320d01da8a74a2",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/60eaae.json",
+      "sha256": "89233c98c0485658929c70b7bae5f6b4db65bc4b7cccb42c67c2a20be4a50b90",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/611889.json",
+      "sha256": "812ad264277b65db264309cb14b648dda3485408beb860e39140fb9c36a25ac0",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/631b5e.json",
+      "sha256": "2b9815449f90d1e398c25a8827b182d0da84a647219873ece6290f6dda9e513d",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/632325.json",
+      "sha256": "4386d05b1a46b6a266ac5ed49a2baf7743f22478330bed36eb1582f4a0901f10",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/63a5e8.json",
+      "sha256": "6e6f4391629f9ebfaee55cb1c6fa2d2891a919ec5e9cfd277f6617344f81266a",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/642c5e.json",
+      "sha256": "e5ca723a953028f9644c0b3a726a8506f1a3d1533fc196f84646590addc7e04b",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/64398d.json",
+      "sha256": "692aa076cea841608e81c25d195f19aa7a5d93fbab6f00b857ffe756bf49f267",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/647534.json",
+      "sha256": "1b9051223a05e9bbf6f1c509f264290bfc32157a6234f1ba2c931442136047e8",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/649c14.json",
+      "sha256": "037c48f9ff11e130362373ec66cad7493af2e3207359ea4673a15e27246f8d89",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/65ba26.json",
+      "sha256": "ac0a29c04f958d8aef45eddbe80d16c87b5ca189e6261117db2c666c6570051a",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/83c118.json",
+      "sha256": "634a9431ba4e2917519d3712dfd89424283c7397ad024617f4b9889200a5f244",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/external/photo-view.json",
+      "sha256": "a091b8a30eff215e7fff2fb50904e28ea86d8bbcbd6f38c084cfcd38c74b1bf3",
+      "origin": "Patchman changes to the Sony native layout"
+    },
+    {
+      "path": "patches/external/year-view.json",
+      "sha256": "4c514cff0f6ec82dc56527941254c80f4eaa83c52966603373b1267f5cb394bf",
+      "origin": "Patchman changes to the Sony native layout"
+    },
+    {
+      "path": "patches/player.json",
+      "sha256": "3ea127aaf4f4c3912303c46fc334671f5c193a09effc90e8a446fd5d1c1dee71",
+      "origin": "Verified against released v1.1 player"
+    },
+    {
+      "path": "src/ui/PeqPanel.qml",
+      "sha256": "bf7f0e5915dbbdc08ef5c1117c516b9764bf014865b98d8a8631310b54c70039",
+      "origin": "Exact released text payload: panel"
+    },
+    {
+      "path": "src/ui/QueueCache.js",
+      "sha256": "651027e7d13f1d5752a21c9077633b406ff1fc250a5efa6fbb616996f3f82ea3",
+      "origin": "Exact released text payload: queue-cache"
+    },
+    {
+      "path": "src/ui/GoToNavigator_v11.qml",
+      "sha256": "a0f8559b39b863b159ebe5031c92ba1e8a8f01451c96f146a85efd4b4ebb4469",
+      "origin": "Exact released text payload: goto-navigator"
+    },
+    {
+      "path": "src/ui/GoToLogic_v11.js",
+      "sha256": "154ef0af9f800570e840e5c94e918d719b37b703d959a6ba8b321d65596cdfde",
+      "origin": "Exact released text payload: goto-logic"
+    },
+    {
+      "path": "src/ui/GoToNative_v11.js",
+      "sha256": "a1a79f681cbf12d4f416db4a2df2b782ab95a3d43dfc43ff775f0b9ee177de3f",
+      "origin": "Exact released text payload: goto-native"
+    },
+    {
+      "path": "src/ui/AudioPath.qml",
+      "sha256": "8e8c5a32a04d398048455395c645bdf8120ccfafbf9365546205b001436f2135",
+      "origin": "Exact released text payload: audio-path"
+    },
+    {
+      "path": "src/ui/AudioPathLabels.js",
+      "sha256": "3a7ed60154738740c835eb20040269ff88fa79612309971212514002405fb179",
+      "origin": "Exact released text payload: audio-path-labels"
+    },
+    {
+      "path": "src/ui/Cassette.qml",
+      "sha256": "703280ff616da59ded809cc4403cb86ec7853d2b223c6066deb7cfd9af2b3c33",
+      "origin": "Exact released text payload: cassette"
+    },
+    {
+      "path": "src/ui/CassettePreferences.qml",
+      "sha256": "7affb5f939a28adbf6c8c3ac1a2daa081cf45d5826c152fc26f7fc4ae9ac5554",
+      "origin": "Exact released text payload: preferences"
+    },
+    {
+      "path": "src/ui/ArtistPhoto.qml",
+      "sha256": "67f98364331017c2850d49ce3a4783e68369b38f6c6d215131983dcc02d43f02",
+      "origin": "Exact released text payload: photo-component"
+    },
+    {
+      "path": "src/runtime/boot-guard.sh",
+      "sha256": "41da865dd8395ffad28121d9ddd51eec5c79fe0ed1ab7d95bcc909b1b707ff0e",
+      "origin": "Exact released text payload: guard"
+    },
+    {
+      "path": "src/runtime/player-launch.sh",
+      "sha256": "c53c173613790e602fe8f4bba0f62378726dd12806de4ab7b0edd368a3cffa76",
+      "origin": "Exact released text payload: launcher"
+    },
+    {
+      "path": "src/runtime/log-policy.sh",
+      "sha256": "20db2711758b0c05804623d6955ba6ce46695ee02be01a1a9c511f4800b1b032",
+      "origin": "Exact released text payload: log-policy"
+    },
+    {
+      "path": "src/runtime/exec-native-years.sh",
+      "sha256": "5be6786d5ce459646ed0c393d6f4b2dbcd4750ce1fbc5c5970dbf9b1f2e7118c",
+      "origin": "Exact released text payload: year-exec"
+    },
+    {
+      "path": "src/installer/install.sh",
+      "sha256": "19e105bcb75c5060682e695d51d658b964980a7019d02bb38287b958d454ccb3",
+      "origin": "Exact clean-installer source used by the released firmware"
+    },
+    {
+      "path": "src/installer/remove.sh",
+      "sha256": "3304399ebee77992e8bca82831d9dff4340b11f2282b50930e23eda53d0262b1",
+      "origin": "Exact clean-installer source used by the released firmware"
+    },
+    {
+      "path": "patches/sony-boot-hook.json",
+      "sha256": "c57641846e22dadbc30941f302f44e0b3828a2906a842a225ff15932f76a9c30",
+      "origin": "One hook applied to a user-supplied Sony boot script"
+    },
+    {
+      "path": "src/peq/profile-main.rs",
+      "sha256": "be966354ac62e00c15fe05b500d3c543d646d0e5f8090d6a1ee7819215456c4c",
+      "origin": "outputs/sony-peq/profile-main.rs"
+    },
+    {
+      "path": "src/peq/ui-core.rs",
+      "sha256": "5497e3ce8dcc8b2bc08baf81517634859b026d14289e1046d5b47936552af060",
+      "origin": "outputs/sony-peq-ui/ui-core.rs"
+    },
+    {
+      "path": "src/library/cache-builder.c",
+      "sha256": "6b9975f4a29d359bc3372e8282b20301a0620cc72fb74a64cd8bc6e114423da0",
+      "origin": "outputs/Patchman-ArtistPhotos/source/cache-builder.c"
+    },
+    {
+      "path": "src/library/cache.h",
+      "sha256": "985bbe9c74066cd9803068091646443c1b09a6d3de8e112f88ed2e0dd141126d",
+      "origin": "outputs/Patchman-ArtistPhotos/source/cache.h"
+    },
+    {
+      "path": "src/library/native-years.c",
+      "sha256": "5976470bd9937deb1db5be68d3131ac5fb2d63054182ae201dc94dc904b1596c",
+      "origin": "outputs/Patchman-AlbumYears-Native/source/native-years.c"
+    },
+    {
+      "path": "src/library/list-layout.h",
+      "sha256": "7722cd8dc88f112210e758fde4554d3ad4cba09cf79005ec2a001bef1a2534fc",
+      "origin": "outputs/Patchman-AlbumYears-Native/source/list-layout.h"
+    },
+    {
+      "path": "src/library/symbols.h",
+      "sha256": "b82d8d8ed30e99984e8e0b838ab0b464b228994d0cef5a508ab12f720354ef06",
+      "origin": "outputs/Patchman-AlbumYears-Native/source/symbols.h"
+    },
+    {
+      "path": "third_party/cinder/cinder-home/src/crossfeed.h",
+      "sha256": "45ce9c5bbe81c321e727d9799c33071206379ee8d60d23a75c26e6aa02bd71d6",
+      "origin": "Cinder, superwilso; PolyForm Noncommercial 1.0.0"
+    },
+    {
+      "path": "third_party/cinder/cinder-home/src/hp_eq.h",
+      "sha256": "956f72747b278d940f1b3f243520efe4de181417c797091cbf3f3a83bbb24a2f",
+      "origin": "Cinder, superwilso; PolyForm Noncommercial 1.0.0"
+    },
+    {
+      "path": "third_party/cinder/cinder-home/src/rgain.h",
+      "sha256": "827c480b96c54482fd3d2267bce729b513534abfbb61500a60d3249d8a0c03d8",
+      "origin": "Cinder, superwilso; PolyForm Noncommercial 1.0.0"
+    },
+    {
+      "path": "third_party/cinder/cinder-home/src/filter_chain.h",
+      "sha256": "f3d635d0df302231508babb680053612c5a50e312fffe43a5c16fb47c6efbf35",
+      "origin": "Cinder, superwilso; PolyForm Noncommercial 1.0.0"
+    },
+    {
+      "path": "third_party/cinder/cinder-home/src/mono_sum.h",
+      "sha256": "9811a3089b5da8f1becae1d4d40fc9f636816e63e8da3a5ffda556d092441327",
+      "origin": "Cinder, superwilso; PolyForm Noncommercial 1.0.0"
+    },
+    {
+      "path": "third_party/cinder/cinder-home/src/soundscape.h",
+      "sha256": "cdb3b0c41b534c25c381db057e2517ffde8d24cf9ffa4f88e57f717b7282a86d",
+      "origin": "Cinder, superwilso; PolyForm Noncommercial 1.0.0"
+    },
+    {
+      "path": "third_party/cinder/cinder-home/src/sony-peq-shim.c",
+      "sha256": "562450ab9980e886af36a3eff9bdb483c86685944d5c5de47759542b54026961",
+      "origin": "Cinder adapted for Sony PEQ; stock effect chain passes through"
+    },
+    {
+      "path": "third_party/cinder/cinder-aac/src/pcm_rate.h",
+      "sha256": "b31305c0fad202cce9953c35eeca26b22f38657f735ad23a20ed5d5bf75afe22",
+      "origin": "Cinder"
+    },
+    {
+      "path": "third_party/cinder/cinder-home/src/sony-peq-wrap.c",
+      "sha256": "9a4e2f43c4c7c936477791fad8a6657da453f40f79a36290d615ff8cd0546a8a",
+      "origin": "Cinder service-wrapper adaptation"
+    },
+    {
+      "path": "third_party/cinder/player/cinder-ui/src/hp_eq.rs",
+      "sha256": "45db881525dffc959c9ae5f04e8b860e112e980f222ae3f279995cfe2eadebdf",
+      "origin": "Cinder profile parser and filter coefficient generation"
+    },
+    {
+      "path": "third_party/cinder/cinder-home/tools/hpeq_fixture.txt",
+      "sha256": "8c5e69e556981099875c9e9c6dc5594d2f1749d60bb9f84424b37aa91fa920e1",
+      "origin": "Cinder DSP fixture"
+    },
+    {
+      "path": "LICENSES/Cinder-PolyForm-Noncommercial-1.0.0.txt",
+      "sha256": "f2ae5feafcd0a987fa85a0590858905f26f14627f115bb203b6803833a9f4d19",
+      "origin": "Cinder required notice and license"
+    },
+    {
+      "path": "tests/test-photos.py",
+      "sha256": "29bec30d1e48ed8ef172601c57d1f361d2d2801bf8075a9c77dd5f07a4175f40",
+      "origin": "outputs/Patchman-ArtistPhotos/tests/test-cache.py"
+    },
+    {
+      "path": "tests/test-years.py",
+      "sha256": "0a06253e7fc2bfb193d953db407afc86396d8e886c18bc626a3faec71037f9fe",
+      "origin": "outputs/Patchman-AlbumYears-Native/tests/test-cache.py"
+    },
+    {
+      "path": "tests/media-client-mock.c",
+      "sha256": "04862adcdb5612d82d50d05ad2cc944d3bcf8fbed78e5a3b2dee70ee24d4f34e",
+      "origin": "outputs/Patchman-AlbumYears-Native/tests/mock.c"
+    },
+    {
+      "path": "tests/native-order-driver.c",
+      "sha256": "1c9d12b5ac404c42fb30b2f683f861c9d39d52fbbe59e9bbf743ad92e0c94d34",
+      "origin": "outputs/Patchman-AlbumYears-Native/tests/driver.c"
+    },
+    {
+      "path": "tests/reference/test-full-installer.py",
+      "sha256": "184c900c800c36577854e5aa9ffb3f23c9431dec71ff722226dae4fedcffa8a9",
+      "origin": "outputs/Patchman-FirstInstallFix/tests/test-package.py"
+    },
+    {
+      "path": "maintenance/assemble-public-release.py",
+      "sha256": "9de5d21b1434a2434e3bd31b209d3e13e74b3ff9f07e92fdf59ef646f76bcc14",
+      "origin": "outputs/Patchman-v1.1-Final/build-release.py"
+    },
+    {
+      "path": "release-manifest.json",
+      "sha256": "291d585ee01cbfaece86b735b44214e8a3c93b7497b459cb16b6a0866a9941a9",
+      "origin": "Component identities from public v1.1; no build-machine paths"
+    }
+  ],
+  "limitations": [
+    "Exact historical B6 goto-target C source is not present in the workspace; later B7 source intentionally excluded.",
+    "No Sony binaries, complete original QML files, Wampy images, personal profiles or device logs are included.",
+    "This is a source snapshot, not a complete one-command reproducible firmware build."
+  ]
+}

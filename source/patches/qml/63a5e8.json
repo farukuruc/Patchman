@@ -1,0 +1,19 @@
+{
+  "before_sha256": "ad401ab281c68aadeed41fe36bd1fae018a430af14d0eccabbf41853823bf564",
+  "after_sha256": "923fde6735d7fef37b4a7d52746b39edee8c33d801e5db18cae4222613b13ceb",
+  "edits": [
+    {
+      "start": 0,
+      "delete": 3,
+      "insert": []
+    },
+    {
+      "start": 4,
+      "delete": 347,
+      "insert": [
+        "import \"file:///system/vendor/patchman/native-years\" as NativeYears\n",
+        "NativeYears.ArtistAlbums {}\n"
+      ]
+    }
+  ]
+}

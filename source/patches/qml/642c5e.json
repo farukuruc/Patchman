@@ -1,0 +1,19 @@
+{
+  "before_sha256": "8480df957fdfb9b1f1bf6f7dd427ef1fd5e129c2119fa71a5fa4aaa4c35d2578",
+  "after_sha256": "d4f330a423cade776e3c294f4637377b1422e0c61e8d08d35b4bfafe8ddc72ae",
+  "edits": [
+    {
+      "start": 0,
+      "delete": 3,
+      "insert": []
+    },
+    {
+      "start": 4,
+      "delete": 326,
+      "insert": [
+        "import \"file:///system/vendor/patchman/native-years\" as Photos\n",
+        "Photos.Artists {}\n"
+      ]
+    }
+  ]
+}
