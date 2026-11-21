@@ -39,5 +39,5 @@ def main():
         d=json.loads((HERE/item['patch']).read_text(encoding='utf-8'))
         text=edited(read(data,item['resource_offset']),d)
         (out/item['output']).write_bytes(text.encode())
-    print('PASS: exact v1.1 player and external Sony-layout QML reconstructed from source edits')
+    print('PASS: exact v1.5 player and external Sony-layout QML reconstructed from source edits')
 if __name__=='__main__':main()

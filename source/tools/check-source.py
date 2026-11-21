@@ -18,7 +18,13 @@ def main():
             if p.name!='check-source.py':assert secret not in text,p
         if p.suffix=='.py':ast.parse(text,filename=str(p))
     spec=json.loads((HERE/'patches/player.json').read_text())
-    assert len(spec['resources'])==14
+    assert len(spec['resources'])==sources['player_resource_count']
+    assert sources['version']=='1.5-stable'
+    manifest=json.loads((HERE/'release-manifest.json').read_text())
+    assert manifest['version']==sources['version']
+    assert spec['output_sha256']==next(f['sha256'] for f in manifest['files'] if f['name']=='player')
+    for line in (HERE/'SHA256SUMS.txt').read_text().splitlines():
+        digest,name=line.split(None,1);assert SHA((HERE/name).read_bytes())==digest,name
     assert all('source' not in f for f in json.loads((HERE/'release-manifest.json').read_text())['files'])
     print('PASS source hashes, Python syntax, text-only export and no private build paths')
 if __name__=='__main__':main()
