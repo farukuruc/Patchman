@@ -3,10 +3,10 @@
 Only hardware operations are mocked. File copying, checksums, chmod, extraction,
 boot state and shell execution are real. chown is recorded, not privileged.
 """
-import hashlib, importlib.util, json, pathlib, re, shlex, subprocess, unittest
+import hashlib, importlib.util, json, pathlib, re, shlex, subprocess, unittest, tarfile, zipfile
 HERE=pathlib.Path(__file__).resolve().parent.parent
 PROJECT=HERE.parent.parent
-WORK=PROJECT/'work/Patchman-FirstInstallFix'
+WORK=PROJECT/'work/Patchman-v1.5-Final'
 spec=importlib.util.spec_from_file_location('installer_fixture',PROJECT/'outputs/Patchman-GoTo/tests/test-package.py')
 base=importlib.util.module_from_spec(spec);spec.loader.exec_module(base)
 MANIFEST=json.loads((HERE/'manifest.json').read_text())
@@ -45,7 +45,7 @@ class Package(unittest.TestCase):
 
     def run_script(self,name):
         script=self.root/(name+'-full.sh')
-        source=HERE/'backups/install.sh' if name=='baseline' else HERE/'scripts'/(name+'.sh')
+        source=HERE/'backups/install.sh' if name=='baseline' else HERE/'backups/v11-install.sh' if name=='v11' else HERE/'scripts'/(name+'.sh')
         script.write_text('umask 077\n'+self.mapped(source.read_text()))
         result=subprocess.run(['sh',str(script)],env=self.fixture.env,capture_output=True,text=True,timeout=45)
         self.assertEqual(result.returncode,0,result.stdout+result.stderr)
@@ -89,6 +89,83 @@ class Package(unittest.TestCase):
         self.assertFalse((self.state/'confirmed').exists())
         self.assertEqual((self.state/'armed').read_text().strip(),VALUES['BUILD_ID'])
 
+    def test_update_from_public_v11_and_reinstall_v15_preserve_user_data(self):
+        self.setup_device()
+        self.archive(HERE/'backups/v11-bundle.tar.gz')
+        self.assertIn('SUCCESS:',self.run_script('v11'))
+        old=json.loads((HERE/'backups/v11-manifest.json').read_text())
+        old_player=next(f['sha256'] for f in old['files'] if f['name']=='player')
+        self.assertEqual(SHA((self.bin/'HgrmMediaPlayerApp.album-test').read_bytes()),old_player)
+        peq=self.root/'contents/PEQ';(peq/'My IEM.txt').write_text('Preamp: -4 dB\n')
+        (peq/'active.txt').write_text('My IEM.txt\n')
+        photos=self.root/'contents/ARTIST-PHOTOS';photos.mkdir(exist_ok=True)
+        (photos/'Queen.jpg').write_bytes(b'user-photo-kept')
+        (self.state/'runtime/cassette-enabled.txt').write_text('on\n')
+        (self.state/'confirmed').write_text(VALUES['BUILD_ID']+'\n')
+        self.archive(WORK/'bundle.tar.gz')
+        for attempt in range(2):
+            self.assertIn('Preserved verified PEQ backend state',self.run_script('install'))
+            for item in MANIFEST['files']:
+                if not item['destination']:continue
+                dest=item['destination'].replace('$ROOT','/system/vendor/sony-peq').replace('$PM','/system/vendor/patchman').replace('$BIN','/system/vendor/sony/bin').replace('$STATE','/data/sony-peq')
+                self.assertEqual(SHA((self.root/dest.lstrip('/')).read_bytes()),item['sha256'])
+            self.assertEqual((peq/'active.txt').read_text(),'My IEM.txt\n')
+            self.assertEqual((peq/'My IEM.txt').read_text(),'Preamp: -4 dB\n')
+            self.assertEqual((photos/'Queen.jpg').read_bytes(),b'user-photo-kept')
+            self.assertEqual((self.state/'runtime/cassette-enabled.txt').read_text(),'on\n')
+            self.assertEqual((self.state/'confirmed').read_text().strip(),VALUES['BUILD_ID'])
+            self.assertEqual((self.state/'runtime/album-sort.txt').read_text(),'newest\n')
+            self.assertEqual((self.root/'system/vendor/patchman/version.txt').read_text().strip(),'Patchman v1.5')
+
+    def test_v15_return_to_public_v11_preserves_data_and_can_update_again(self):
+        self.setup_device();self.run_script('install')
+        (self.state/'confirmed').write_text(VALUES['BUILD_ID']+'\n')
+        peq=self.root/'contents/PEQ';(peq/'My IEM.txt').write_text('Preamp: -4 dB\n')
+        (peq/'active.txt').write_text('My IEM.txt\n')
+        photos=self.root/'contents/ARTIST-PHOTOS';photos.mkdir(exist_ok=True)
+        (photos/'Queen.jpg').write_bytes(b'keep-photo')
+        music=self.root/'contents/MUSIC';music.mkdir(exist_ok=True)
+        (music/'keep.flac').write_bytes(b'keep-music')
+        (self.state/'runtime/cassette-enabled.txt').write_text('on\n')
+        (self.state/'runtime/album-sort.txt').write_text('za\n')
+        self.archive(WORK/'return-v11.tar.gz')
+        log=self.run_script('return-v11')
+        self.assertIn('SUCCESS: Patchman v1.1 restored;',log)
+        self.assertIn('Preserved verified PEQ backend state',log)
+        old=json.loads((HERE/'backups/v11-manifest.json').read_text())
+        for item in old['files']:
+            if not item['destination']:continue
+            dest=item['destination'].replace('$ROOT','/system/vendor/sony-peq').replace('$PM','/system/vendor/patchman').replace('$BIN','/system/vendor/sony/bin').replace('$STATE','/data/sony-peq')
+            self.assertEqual(SHA((self.root/dest.lstrip('/')).read_bytes()),item['sha256'],item['name'])
+        self.assertEqual((self.root/'system/vendor/patchman/version.txt').read_text().strip(),'Patchman v1.1')
+        for upgrade in [False,True]:
+            if upgrade:
+                self.archive(WORK/'bundle.tar.gz');self.assertIn('SUCCESS:',self.run_script('install'))
+            self.assertEqual((peq/'active.txt').read_text(),'My IEM.txt\n')
+            self.assertEqual((peq/'My IEM.txt').read_text(),'Preamp: -4 dB\n')
+            self.assertEqual((photos/'Queen.jpg').read_bytes(),b'keep-photo')
+            self.assertEqual((music/'keep.flac').read_bytes(),b'keep-music')
+            self.assertEqual((self.state/'runtime/cassette-enabled.txt').read_text(),'on\n')
+            self.assertEqual((self.state/'runtime/album-sort.txt').read_text(),'za\n')
+            self.assertEqual((self.state/'confirmed').read_text().strip(),VALUES['BUILD_ID'])
+
+    def test_sort_preference_is_readable_and_preserved_on_upgrade_and_return(self):
+        self.setup_device();self.assertIn('SUCCESS:',self.run_script('install'))
+        preference=self.state/'runtime/album-sort.txt'
+        self.assertEqual(preference.read_text(),'newest\n')
+        self.assertEqual(preference.stat().st_mode&0o777,0o666)
+        preference.write_text('za\n')
+        (self.state/'confirmed').write_text(VALUES['BUILD_ID']+'\n')
+        self.assertIn('SUCCESS:',self.run_script('install'))
+        self.assertEqual(preference.read_text(),'za\n')
+        self.archive(WORK/'return-stable.tar.gz')
+        self.assertIn('SUCCESS:',self.run_script('return-stable'))
+        for f in STABLE['files']:
+            if not f['destination']:continue
+            dest=f['destination'].replace('$ROOT','/system/vendor/sony-peq').replace('$PM','/system/vendor/patchman').replace('$BIN','/system/vendor/sony/bin').replace('$STATE','/data/sony-peq')
+            self.assertEqual(SHA((self.root/dest.lstrip('/')).read_bytes()),f['sha256'],f['name'])
+        self.assertEqual(preference.read_text(),'za\n')
+
     def test_multiple_usb_boots_do_not_consume_first_cable_free_trial(self):
         self.setup_device();self.run_script('install')
         for i in range(3):
@@ -122,6 +199,7 @@ class Package(unittest.TestCase):
         self.assertEqual((self.state/'confirmed').read_text().strip(),VALUES['BUILD_ID'])
         self.assertEqual((self.root/'system/vendor/patchman/native-years').stat().st_mode&0o777,0o755)
 
+
     def test_confirmed_backend_still_rejects_repeated_audio_load_failure(self):
         self.setup_device();self.run_script('install')
         (self.state/'confirmed').write_text(VALUES['BUILD_ID']+'\n')
@@ -133,7 +211,7 @@ class Package(unittest.TestCase):
         self.setup_device();self.run_script('install')
         (self.root/'contents/PEQ/My IEM.txt').write_text('keep')
         self.archive(WORK/'return-stable.tar.gz')
-        self.assertIn('SUCCESS: Patchman confirmed v1.1 restored;',self.run_script('return-stable'))
+        self.assertIn('SUCCESS: Patchman confirmed Go to UI restored;',self.run_script('return-stable'))
         for name,dest in [('guard',self.fixture.backend/'boot.sh'),('player',self.bin/'HgrmMediaPlayerApp.album-test')]:
             expected=next(f['sha256'] for f in STABLE['files'] if f['name']==name)
             self.assertEqual(SHA(dest.read_bytes()),expected)
@@ -156,9 +234,9 @@ class Package(unittest.TestCase):
         self.assertIn('ERROR: Insufficient space',self.run_script('install'))
         self.assertFalse((self.bin/'sony-album-launch.sh').exists())
 
-    def test_only_guard_payload_changed_no_security_dsp_or_ui_changes(self):
+    def test_only_native_header_and_logging_changed_confirmed_return_exact(self):
         old={f['name']:f['sha256'] for f in STABLE['files']};new={f['name']:f['sha256'] for f in MANIFEST['files']}
-        self.assertEqual(set(old),set(new));self.assertEqual({k for k in old if old[k]!=new[k]},{'guard'})
+        self.assertEqual(set(new)-set(old),{'continuous-title'});self.assertEqual({k for k in old if old[k]!=new[k]},{'player'})
         self.assertEqual(SHA((WORK/'return-stable.tar.gz').read_bytes()),STABLE['values']['BUNDLE_SHA'])
         body=(HERE/'scripts/install.sh').read_text()
         for f in MANIFEST['files']:self.assertIn('hash_is "$TMP/files/'+f['name']+'" "'+f['sha256']+'"',body)

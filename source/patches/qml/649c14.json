@@ -1,6 +1,6 @@
 {
   "before_sha256": "cb0dd8ce10a7b07cd334fecee49b8333d42990f1b604eb14429bd98cbcc904ed",
-  "after_sha256": "81102f19ae19fce5b400d1ae5ba2d7e41624894eeb009d2b7907ad126d9bbc89",
+  "after_sha256": "2559baa02eb6beb852ba5c1be7bf326436c183e7e58e989c84a131036d000181",
   "edits": [
     {
       "start": 0,
@@ -23,6 +23,10 @@
       "insert": [
         "id:rootSetting\n",
         "function closePeqPanel(){\n",
+        "if(sortPanelLoader.active){\n",
+        "if(!sortPanelLoader.item || !sortPanelLoader.item.saving)sortPanelLoader.active=false\n",
+        "return true\n",
+        "}\n",
         "if(!peqPanelLoader.active)return false\n",
         "peqPanelLoader.active=false\n",
         "return true\n",
@@ -250,6 +254,7 @@
         "blindState.state = \"FadeIn\"\n",
         "}\n",
         "onUnavailable:{\n",
+        "sortPanelLoader.active = false\n",
         "peqPanelLoader.active = false\n",
         "blindState.state = \"Invisible\"\n",
         "}\n",
@@ -313,6 +318,15 @@
         "SettingItemNormal{\n",
         "title:qsTr(\"010023\")+ viewstyle.empty_string\n",
         "onClicked:goToDeviceSetting()\n",
+        "onEdgeReleased:rootSetting.onReleased()\n",
+        "onEdgeCanceled:rootSetting.onReleased()\n",
+        "onPressedYPosition:rootSetting.pressedYPosition(posY)\n",
+        "onMovedYPosition:rootSetting.movingYPosition(posY)\n",
+        "}\n",
+        "SettingItemNormal{\n",
+        "title:\"Sorting Options\"\n",
+        "description:\"Album order inside an artist\"\n",
+        "onClicked:sortPanelLoader.active = true\n",
         "onEdgeReleased:rootSetting.onReleased()\n",
         "onEdgeCanceled:rootSetting.onReleased()\n",
         "onPressedYPosition:rootSetting.pressedYPosition(posY)\n",
@@ -674,6 +688,14 @@
         "active:false\n",
         "source:\"file:///system/vendor/sony-peq/ui/PeqPanel.qml\"\n",
         "onLoaded:item.closed.connect(function(){peqPanelLoader.active = false})\n",
+        "}\n",
+        "Loader{\n",
+        "id:sortPanelLoader\n",
+        "anchors.fill:parent\n",
+        "z:1001\n",
+        "active:false\n",
+        "source:\"file:///system/vendor/sony-peq/ui/SortingOptions.qml\"\n",
+        "onLoaded:item.closed.connect(function(){sortPanelLoader.active=false})\n",
         "}\n",
         "}\n"
       ]

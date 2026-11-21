@@ -24,7 +24,7 @@ MOD=/system/vendor/sony/bin/HgrmMediaPlayerApp.album-test
 STATE=/data/sony-album-test/run
 
 # Export the preceding cable-free run before considering the USB fallback.
-for file in album-native-years.log album-year-cache.log goto-navigation-b6.json goto-target.json cassette-root.json cassette-component.json cassette-launch.txt; do
+for file in battery-diagnostic.json album-native-years.log album-year-cache.log goto-navigation-b6.json goto-target.json cassette-root.json cassette-component.json cassette-launch.txt; do
     if [ -r "/data/sony-peq/runtime/$file" ]; then
         (cp "/data/sony-peq/runtime/$file" "/contents/sony_$file") 2>/dev/null
     fi
@@ -34,9 +34,25 @@ original() {
     REASON=$1
     shift
     (echo "sony-album: $REASON -> original" >> /contents/sony_album_launch.log) 2>/dev/null
-    if [ -r "$STATE/player.log" ]; then
+    # Export short captures too: they may never fill a complete 128-KiB chunk.
+    (
+        echo "HeaderProbe1 log export fix 2"
+        echo "fallback=$REASON debug=${PATCHMAN_DEBUG:-unset}"
+        id
+        ls -ld "$STATE" 2>&1
+        ls -l "$STATE/player.log" "$STATE/player.log.part" "$STATE/debug-stderr.fifo" 2>&1
+    ) > /contents/sony_headerprobe_log_status.txt 2>&1
+    if [ -r "$STATE/player.log" ] || [ -r "$STATE/player.log.part" ]; then
         if command -v pm_prepare_player_log >/dev/null 2>&1; then pm_prepare_player_log; fi
     fi
+    (
+        if [ -s /contents/sony_album_player.log ]; then
+            echo "exported player log present"
+            wc -c < /contents/sony_album_player.log
+        else
+            echo "No nonempty player log was exported; inspect the source-file status above."
+        fi
+    ) >> /contents/sony_headerprobe_log_status.txt 2>&1
     exec "$REAL" "$@"
 }
 for node in /sys/class/android_usb/android0/state /sys/class/power_supply/usb/online /sys/class/power_supply/usb/present; do

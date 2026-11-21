@@ -1,0 +1,79 @@
+{
+  "before_sha256": "df0bc0107f75fee725efbba9e09fa55f250d1d20bff14c8d5b30142cf7f4ced1",
+  "after_sha256": "76bbe7a49d7e33d85448f3a627aaf2a2321356146046ac736cfd32ccb10cab53",
+  "edits": [
+    {
+      "start": 0,
+      "delete": 4,
+      "insert": []
+    },
+    {
+      "start": 6,
+      "delete": 80,
+      "insert": [
+        "SwipeDetectionButton {\n",
+        "id: shuffle\n",
+        "property bool is_shuffle: false\n",
+        "property bool is_simple_mode: false\n",
+        "property string load_image_source: \"\"\n",
+        "property string pressed_image_source: \"\"\n",
+        "signal startedSwipe()\n",
+        "width: 65\n",
+        "height: 110\n",
+        "loadComponent: is_simple_mode ? normalImage : normalIcon\n",
+        "pressedComponent: is_simple_mode ? pressedImage : pressedIcon\n",
+        "disableComponent: is_simple_mode ? normalImage : normalIcon\n",
+        "onIs_shuffleChanged: changeImage()\n",
+        "onIs_simple_modeChanged: changeImage()\n",
+        "onSwipeDetect: shuffle.startedSwipe()\n",
+        "Component.onCompleted: changeImage()\n",
+        "function changeImage() {\n",
+        "var stem=\"qrc:/assets/images/btn_audio_play_\"+(is_simple_mode?\"hp_amp_\":\"\")+\"shuffle_\"+(is_shuffle?\"on\":\"off\")\n",
+        "load_image_source=stem+\"_normal.png\"\n",
+        "pressed_image_source=stem+\"_pressed.png\"\n"
+      ]
+    },
+    {
+      "start": 87,
+      "delete": 0,
+      "insert": [
+        "function paintIcon(canvas, pressed) {\n",
+        "var c=canvas.getContext(\"2d\")\n",
+        "c.clearRect(0,0,canvas.width,canvas.height)\n",
+        "c.save()\n",
+        "c.translate(18,40)\n",
+        "c.beginPath();c.rect(0,0,32,26);c.clip()\n",
+        "c.strokeStyle=\"white\"\n",
+        "c.globalAlpha=is_shuffle?1:(pressed?113/255:77/255)\n",
+        "c.lineWidth=pressed?2.5:2\n",
+        "c.lineCap=\"round\";c.lineJoin=\"round\"\n",
+        "c.beginPath()\n",
+        "c.moveTo(1,5.5);c.lineTo(8,5.5);c.bezierCurveTo(14,5.5,18,20.5,24,20.5);c.lineTo(30,20.5)\n",
+        "c.moveTo(26,16.5);c.lineTo(30,20.5);c.lineTo(26,24.5)\n",
+        "c.moveTo(1,20.5);c.lineTo(8,20.5);c.bezierCurveTo(14,20.5,18,5.5,24,5.5);c.lineTo(30,5.5)\n",
+        "c.moveTo(26,1.5);c.lineTo(30,5.5);c.lineTo(26,9.5)\n",
+        "c.stroke();c.restore()\n",
+        "}\n",
+        "Component { id: normalImage; Image { source: shuffle.load_image_source } }\n",
+        "Component { id: pressedImage; Image { source: shuffle.pressed_image_source } }\n",
+        "Component {\n",
+        "id: normalIcon\n",
+        "Canvas {\n",
+        "id: normalCanvas\n",
+        "onPaint: shuffle.paintIcon(this,false)\n",
+        "Connections { target: shuffle; onIs_shuffleChanged: normalCanvas.requestPaint() }\n",
+        "}\n",
+        "}\n",
+        "Component {\n",
+        "id: pressedIcon\n",
+        "Canvas {\n",
+        "id: pressedCanvas\n",
+        "onPaint: shuffle.paintIcon(this,true)\n",
+        "Connections { target: shuffle; onIs_shuffleChanged: pressedCanvas.requestPaint() }\n",
+        "}\n",
+        "}\n",
+        "}\n"
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "name": "Patchman",
-  "version": "1.1-stable",
-  "build": "nw-a55-v1.1-stable",
+  "version": "1.5-stable",
+  "build": "nw-a55-v1.5-stable",
   "target": "NW-A55 / Walkman One 3.02",
   "values": {
     "ORIGINAL_HAGO": "fe4adf07775dc447c18a22a63fb0b59168cce9159bfc509d122ae3d991248a85",
@@ -14,15 +14,15 @@
     "SHIM_SHA": "38d0fadda997b6b94c8785083436218d722dd1c4831d9c3ed8c20f04bedcdb5d",
     "PROFILE_SHA": "590d77e4aa4ba1ce750a307283d31d3b41a6dbb8c79b3e711543393009b4ae5a",
     "SONY_PLAYER": "f515f75e48e84460c18707e5408c6c09c26a77a13deccdee23e220dc81f49124",
-    "BUNDLE_SIZE": "9663367",
-    "BUNDLE_SHA": "dd3c478d49936304144a1e4623e945bc9fd79a152c82db0dbd51f4abda990ef4",
+    "BUNDLE_SIZE": "9672284",
+    "BUNDLE_SHA": "603f34912cba198991b3a7cf810ea554c685ace786a38c959d6f88b68d7db9f9",
     "DATA_KIB": "4096",
-    "DATA_FALLBACK_KIB": "18728",
-    "FILES_KIB": "20864",
+    "DATA_FALLBACK_KIB": "18788",
+    "FILES_KIB": "21440",
     "PROBE_SHA": "651027e7d13f1d5752a21c9077633b406ff1fc250a5efa6fbb616996f3f82ea3",
-    "PAYLOAD_MEMBERS": "shim profile ui-helper guard panel queue-cache log-policy goto-navigator goto-logic goto-native goto-status goto-target audio-path audio-path-labels cassette preferences tape reels wrapper boot original-daemon original-boot gate year-shim year-builder year-view year-exec year-js year-status photo-view photo-component player launcher",
-    "CONTENTS_KIB": "10525",
-    "SYSTEM_KIB": "28424"
+    "PAYLOAD_MEMBERS": "shim profile ui-helper guard panel queue-cache log-policy goto-navigator goto-logic goto-native goto-status goto-target audio-path audio-path-labels cassette preferences tape reels wrapper boot original-daemon original-boot gate year-shim year-builder year-view year-exec year-js year-status photo-view photo-component player launcher sort-panel topbar-batteryindicator topbar-batterystate topbar-headerlayout topbar-nativebatteryicon topbar-nativeglyph topbar-playbackglyph topbar-rightcluster topbar-speakerglyph continuous-title",
+    "CONTENTS_KIB": "10534",
+    "SYSTEM_KIB": "28500"
   },
   "playerHashes": [
     "04d9e3700173bbd92714318134dc955a1f8c949cf2613717d32d415da53ae7aa",
@@ -120,7 +120,7 @@
       "name": "log-policy",
       "destination": "$PM/log-policy.sh",
       "mode": 644,
-      "sha256": "20db2711758b0c05804623d6955ba6ce46695ee02be01a1a9c511f4800b1b032"
+      "sha256": "ed5454ff1302dd0b61f03cb566006ec4d861e61d8e842b918b907e57c64d5d79"
     },
     {
       "name": "goto-navigator",
@@ -222,7 +222,7 @@
       "name": "year-shim",
       "destination": "$PM/libalbum_years.so",
       "mode": 755,
-      "sha256": "eb0457a72e32c4737b4872db977f9fbdfeeae60a249977fdfd5559d24b1a803c"
+      "sha256": "c494f7a5ab5ee3694de0e3d4ad128dafce9a0f7da6c2b7b3eb8559c6111bd6d3"
     },
     {
       "name": "year-builder",
@@ -270,13 +270,73 @@
       "name": "player",
       "destination": "$BIN/HgrmMediaPlayerApp.album-test",
       "mode": 755,
-      "sha256": "6d92e5ab8977baab9cc2c1e8662555b070fdf4a00e2895cd28bc72fc230823a0"
+      "sha256": "c7667d5ce808fc5954c5a28b7f04f35f11fd6f1ad49d2c2be274625141c30e34"
     },
     {
       "name": "launcher",
       "destination": "$BIN/sony-album-launch.sh",
       "mode": 755,
-      "sha256": "c53c173613790e602fe8f4bba0f62378726dd12806de4ab7b0edd368a3cffa76"
+      "sha256": "1d61751a34427fdb6ad6e362be67aed8cf62c0b945645496aa18729ed849ecc1"
+    },
+    {
+      "name": "sort-panel",
+      "destination": "$ROOT/ui/SortingOptions.qml",
+      "mode": 644,
+      "sha256": "a942290769a13f91abc7983552f25b3e761569cccb8794e0c54e2f9170a95494"
+    },
+    {
+      "name": "topbar-batteryindicator",
+      "destination": "$ROOT/ui/topbar/BatteryIndicator.qml",
+      "mode": 644,
+      "sha256": "385aa1c1e67dcd81fc1129865baf1fd180675c29b4d4ed6d0509c687732dca76"
+    },
+    {
+      "name": "topbar-batterystate",
+      "destination": "$ROOT/ui/topbar/BatteryState.qml",
+      "mode": 644,
+      "sha256": "35598ff81c59c565678e1ee09b8c55710e9283e2604a224694ec2bb9bee73cd1"
+    },
+    {
+      "name": "topbar-headerlayout",
+      "destination": "$ROOT/ui/topbar/HeaderLayout.js",
+      "mode": 644,
+      "sha256": "a2dfdd2bd754335c66ba2b0cd49040b46b2fd9734809b6a6ae50d220cfa6c8af"
+    },
+    {
+      "name": "topbar-nativebatteryicon",
+      "destination": "$ROOT/ui/topbar/NativeBatteryIcon.qml",
+      "mode": 644,
+      "sha256": "9c8e6a71c9532c2be705340ab69c87507f677bbbc19849fe9c5e636e1932eaf6"
+    },
+    {
+      "name": "topbar-nativeglyph",
+      "destination": "$ROOT/ui/topbar/NativeGlyph.qml",
+      "mode": 644,
+      "sha256": "6c5d1ce281c85d0f3ea79e86fc693f614a05b3981df7883ecf1801f064bf20d0"
+    },
+    {
+      "name": "topbar-playbackglyph",
+      "destination": "$ROOT/ui/topbar/PlaybackGlyph.qml",
+      "mode": 644,
+      "sha256": "378a3baeacc6fd99964012e89bf5b93d788c560b2d7c2af8e86a5fbe3b7da3aa"
+    },
+    {
+      "name": "topbar-rightcluster",
+      "destination": "$ROOT/ui/topbar/RightCluster.qml",
+      "mode": 644,
+      "sha256": "5e37f7fb573e30683151bb3c61e6eabed92b80417bb4af090714a180f08685ab"
+    },
+    {
+      "name": "topbar-speakerglyph",
+      "destination": "$ROOT/ui/topbar/SpeakerGlyph.qml",
+      "mode": 644,
+      "sha256": "3714c03b67c2d808b35596b0bc54b4384a70ceae8da6481dacf1737d91af695c"
+    },
+    {
+      "name": "continuous-title",
+      "destination": "$ROOT/ui/ContinuousTitle.qml",
+      "mode": "644",
+      "sha256": "f9fa5582fbdc7ca0a0069f356b714a68b667571e861f6496f5ba15898e1de64f"
     }
   ],
   "resources": [
@@ -290,7 +350,7 @@
       "name": "unit-info",
       "offset": 6666790,
       "slot": 2319,
-      "used": 1557
+      "used": 1556
     },
     {
       "name": "main",
@@ -299,15 +359,67 @@
       "used": 5746
     }
   ],
-  "release_date": "2026-11-20",
-  "release": {
-    "firmware_payloads_unchanged": true,
-    "upg_sha256": {
-      "Install/Data/Device/NW_WM_FW.UPG": "aae23ad2b5f57d0271fed91339bd0c046abbd4c73452ec829dc17865b5e546d4",
-      "Remove/Data/Device/NW_WM_FW.UPG": "9eb5c4cf54637479d0df9f21009a93760cee9a1109dbfae9418b1e971bdd8637"
+  "release_date": "2026-11-21",
+  "topbar_resources": [
+    {
+      "offset": 6287318,
+      "slot": 2208,
+      "used": 1645
     },
-    "source_zip_sha256": "3f336731c431cb5944208380b23b8b730e322cd09519ee956e9d34528e98378f",
-    "distribution_revision": "clean-install-fix",
+    {
+      "offset": 6225683,
+      "slot": 737,
+      "used": 672
+    },
+    {
+      "offset": 6191926,
+      "slot": 2448,
+      "used": 1797
+    },
+    {
+      "offset": 6360156,
+      "slot": 565,
+      "used": 546
+    }
+  ],
+  "metadata_resources": [
+    {
+      "offset": 6493601,
+      "slot": 1469,
+      "used": 1287
+    },
+    {
+      "offset": 6210665,
+      "slot": 1943,
+      "used": 1531
+    },
+    {
+      "offset": 6418907,
+      "slot": 4333,
+      "used": 3294
+    },
+    {
+      "offset": 6666790,
+      "slot": 2319,
+      "used": 1556
+    }
+  ],
+  "release": {
+    "distribution": "complete-first-install-and-update",
+    "public_folders": [
+      "Install",
+      "Remove",
+      "ReturnToV1.1"
+    ],
+    "return_to_v11_bundle_sha256": "dd3c478d49936304144a1e4623e945bc9fd79a152c82db0dbd51f4abda990ef4",
+    "upgrade_baseline": "public v1.1 complete installer; filesystem upgrade and reinstall tested",
+    "unit_information": "Patchman v1.5",
+    "upg_sha256": {
+      "Install/Data/Device/NW_WM_FW.UPG": "cbded6e859e2a48e71579101d37b4bf0e5c10ebe4e6ee0899b3f5c4aa82d5d92",
+      "Remove/Data/Device/NW_WM_FW.UPG": "d383ef18af90adbf688f63287d4159b39fa7874ad80de32bf4d8838219a45d1d",
+      "ReturnToV1.1/Data/Device/NW_WM_FW.UPG": "fc7cb26658d5b1f486b5e1686ecdeefc1b87c132a8693058af110e6118d94533"
+    },
+    "device_validation": "UI features reported working by author; final v1.5 first installation not separately device-tested",
     "source_snapshot_note": "See docs/BUILD.md: original firmware and assets excluded; exact B6 metadata-helper source not recovered."
   }
 }

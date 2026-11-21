@@ -17,6 +17,25 @@
 #ifndef LOG_PATH
 #define LOG_PATH "/data/sony-peq/runtime/album-native-years.log"
 #endif
+#ifndef SORT_PATH
+#define SORT_PATH "/data/sony-peq/runtime/album-sort.txt"
+#endif
+enum SortMode { NEWEST, OLDEST, AZ, ZA };
+/* Read only on a library query, never on the audio path. No process-wide sort
+ * mode: independent queries cannot race through a qsort global variable. */
+static enum SortMode sort_mode(void){
+ char text[32];struct stat st;
+ int fd=open(SORT_PATH,O_RDONLY|O_CLOEXEC|O_NOFOLLOW|O_NONBLOCK);
+ if(fd<0)return NEWEST;
+ if(fstat(fd,&st)||!S_ISREG(st.st_mode)||st.st_size<1||st.st_size>16){close(fd);return NEWEST;}
+ ssize_t n=read(fd,text,sizeof(text)-1);close(fd);
+ if(n<1)return NEWEST;text[n]=0;
+ while(n>0&&(text[n-1]=='\n'||text[n-1]=='\r'||text[n-1]==' '||text[n-1]=='\t'))text[--n]=0;
+ if(!strcmp(text,"oldest"))return OLDEST;
+ if(!strcmp(text,"az"))return AZ;
+ if(!strcmp(text,"za"))return ZA;
+ return NEWEST;
+}
 /* Pinned Sony IdList ABI: ctor e0c0, GetCount e348, GetId e380,
  * GetInitialChar e3bc, MoveToFirst e450. Constructor sets cursor=ids.begin.
  * Search returns this completed object BEFORE the player builds its Qt model.
@@ -82,6 +101,12 @@ static unsigned lookup(unsigned artist,unsigned album){
 }
 struct Ordered{uint32_t id,initial,year,index;};
 static int compare(const void*a,const void*b){const struct Ordered*x=a,*y=b;return x->year!=y->year?(x->year>y->year?-1:1):(x->index>y->index)-(x->index<y->index);}
+static int compare_oldest(const void*a,const void*b){
+ const struct Ordered*x=a,*y=b;
+ if(!x->year||!y->year){if(x->year!=y->year)return x->year?-1:1;}
+ else if(x->year!=y->year)return x->year<y->year?-1:1;
+ return (x->index>y->index)-(x->index<y->index);
+}
 static int compare_id(const void*a,const void*b){uint32_t x=*(const uint32_t*)a,y=*(const uint32_t*)b;return (x>y)-(x<y);}
 static int native_shape(struct NativeList*p){
  if(!p)return 0;
@@ -106,7 +131,9 @@ static void order(int type,int rc,void**filter,void**out,struct FilterState befo
  if(range_depth||type!=6||rc||!filter||!*filter||!out||!*out||before.invalid||before.mask!=(1u<<5)||!before.artist)return;
  struct FilterState after=snapshot(*filter);if(after.epoch!=before.epoch||after.artist!=before.artist||after.invalid||after.mask!=before.mask)return;
  struct NativeList*p=*out;if(!native_shape(p)){log_event("shape-rejected",0,before.artist,0);return;}
- pthread_once(&cache_once,load_cache);if(!record_count)return;
+ enum SortMode mode=sort_mode();
+ if(mode==AZ)return; /* Preserve Sony's native alphabetic collation exactly. */
+ pthread_once(&cache_once,load_cache);if(!record_count&&mode!=ZA)return;
  unsigned count=(unsigned)(p->end-p->begin);struct Ordered*sorted=malloc(count*sizeof *sorted);uint32_t*ids=malloc(count*sizeof *ids);
  if(!sorted||!ids){free(sorted);free(ids);return;}
  int good=1;
@@ -116,7 +143,9 @@ static void order(int type,int rc,void**filter,void**out,struct FilterState befo
  }
  if(good){qsort(ids,count,sizeof *ids,compare_id);for(unsigned i=1;i<count;i++)if(ids[i]==ids[i-1])good=0;}
  if(good){
-  qsort(sorted,count,sizeof *sorted,compare);
+  if(mode==ZA){
+   for(unsigned i=0;i<count/2;i++){struct Ordered t=sorted[i];sorted[i]=sorted[count-1-i];sorted[count-1-i]=t;}
+  }else qsort(sorted,count,sizeof *sorted,mode==OLDEST?compare_oldest:compare);
   /* All validation and allocations are complete before the first write. */
   for(unsigned i=0;i<count;i++){p->begin[i]=sorted[i].id;p->initial[i]=sorted[i].initial;}
   log_event("ordered-before-model",count,before.artist,p->begin[0]);

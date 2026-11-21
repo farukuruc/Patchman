@@ -1,122 +1,92 @@
-"""Assemble v1.1-stable from immutable, device-confirmed UPGs.
-
-Only external installer notices, XML Product labels and release documents change.
-Encrypted firmware payloads and Windows executables remain byte-identical.
-"""
-import hashlib,json,pathlib,re,zipfile,xml.etree.ElementTree as ET
+"""Publish Install, Remove and exact v1.1 recovery after the complete build."""
+import hashlib,json,pathlib,re,zipfile,zlib
+import xml.etree.ElementTree as ET
 
 HERE=pathlib.Path(__file__).resolve().parent
+WORK=HERE.parent.parent/'work/Patchman-v1.5-Final'
+BUILD=HERE.parent.parent/'work/Patchman-v1.5-Final-build'
 ROOT='Patchman_NW-A55'
-VERSION='1.1-stable'
-def sha(data):return hashlib.sha256(data).hexdigest()
-def write(path,data):path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data)
-
-INSTALL_NOTICE='''Patchman v1.1-stable - Install
-
-REQUIRED BEFORE INSTALLATION - EVEN IF WALKMAN ONE 3.02 IS ALREADY INSTALLED:
-
-Back up your files. Remove active Patchman with its matching remover, if present. Return fully to stock using the StockRevert package for your current Walkman One A50 firmware, then apply the official Sony NW-A55 firmware update as instructed. Download and install Walkman One for NW-A50 again from the official MrWalkman website. Confirm it works, then install Patchman.
-
-Required order: stock Sony firmware > fresh official Walkman One 3.02 > Patchman. Do not install directly over an old Walkman One setup. A settings reset alone is not a stock firmware return. Read the full steps in README.md.
-
-Requires Sony NW-A55. This package does not install Walkman One. A factory reset is a separate optional step that erases internal user data; keep backups on the PC.
-
-Adds album Play and total time, newest-first album years, queue Remaining time, Parametric EQ, optional Cassette Screen, Audio Path, Go to Album / Album Artist, and optional artist photos.
-
-Go to requires Playback Settings > Artist List Display > Album Artist.
-
-Optional artist photos belong in ARTIST-PHOTOS on the player's internal storage. Match the Album Artist name, for example Queen.jpg or Pink Floyd.png. Without a photo, the original album cover stays. Fully restart after adding or changing photos.
-
-The Patchman installer keeps your music, photos, PEQ profiles and supported preferences. Earlier preparation or a factory reset can erase files or reset settings, so keep backups. No WM1Z sound signature is required.
-
-After installation completes, disconnect USB and fully turn the player off and on. Check Patchman after a start without USB.
-
-USB-connected starts defer the first PEQ playback check. On the first start without USB, connect wired headphones and play normal PCM/FLAC audio before another full restart. Existing verified installations keep their playback check.
-
-This is the complete installer. No earlier Patchman package is required. The stock return and fresh Walkman One preparation above also apply when installing this release on a player that has used Patchman before. If installation reports an unsupported player version, read README.md and share the latest install log; do not bypass the check.
-
-Direct Source + PEQ was tested with wired headphones. Bluetooth playback and PEQ were not tested; the author listens by wired headphones.
-'''
-REMOVE_NOTICE='''Patchman v1.1-stable - Remove
-
-Removes active Patchman features from a compatible Sony NW-A55 installation.
-
-The player returns to Walkman One's original player. This does not install stock Sony firmware or return to an older Patchman release.
-
-Your music, ARTIST-PHOTOS files and PEQ profile files are kept. Walkman One remains installed.
-
-After removal completes, disconnect USB and fully turn the player off and on.
-'''
+SHA=lambda b:hashlib.sha256(b).hexdigest()
 
 def main():
-    receipt=json.loads((HERE/'backups/receipt.json').read_text())
-    source_path=HERE/'backups'/receipt['source_zip_name']
-    source_root=receipt['source_zip_root']
-    source=source_path.read_bytes()
-    assert sha(source)==receipt['source_zip_sha256']
-    payload={};source_upg={};exe_hashes={};source_manifest=None
-    with zipfile.ZipFile(source_path) as z:
-        assert z.testzip() is None
-        source_manifest=json.loads(z.read(source_root+'manifest.json'))
-        assert source_manifest['version']==receipt['source_version']
-        for line in z.read(source_root+'SHA256SUMS.txt').decode().splitlines():
-            digest,name=line.split(None,1);assert sha(z.read(source_root+name.strip()))==digest
-        for action in ('Install','Remove'):
-            for name in z.namelist():
-                prefix=source_root+action+'/'
-                if not name.startswith(prefix) or name.endswith('/'):continue
-                relative=name[len(source_root):]
-                assert '..' not in pathlib.PurePosixPath(relative).parts
-                data=z.read(name)
-                if relative.endswith('/NW_WM_FW.UPG'):source_upg[relative]=sha(data)
-                if relative.endswith('.exe'):exe_hashes[relative]=sha(data)
-                if relative.endswith('/SWUpdate.xml'):
-                    data,n=re.subn(rb'<Product>.*?</Product>',('<Product>Patchman v1.1-stable - '+action+'</Product>').encode(),data);assert n==1
-                    assert ET.fromstring(data).findtext('Common/Version')=='3.02'
-                if pathlib.PurePosixPath(relative).name.startswith('disclaimer_'):
-                    text=INSTALL_NOTICE if action=='Install' else REMOVE_NOTICE
-                    data=b'\xff\xfe'+text.replace('\n','\r\n').encode('utf-16-le')
-                    assert data.decode('utf-16').startswith('Patchman v1.1-stable - '+action)
-                    assert 'trial' not in data.decode('utf-16').lower()
-                payload[relative]=data
-    assert len(source_upg)==2
-    assert source_manifest['values']['BUNDLE_SHA']==receipt['source_bundle_sha256']
-    manifest=dict(source_manifest,version=VERSION,build='nw-a55-v1.1-stable',release_date='2026-11-20')
+    manifest=json.loads((HERE/'manifest.json').read_text())
+    assert manifest['version']=='1.5-stable'
+    assert SHA((WORK/'bundle.tar.gz').read_bytes())==manifest['values']['BUNDLE_SHA']
+    player=(WORK/'player').read_bytes();off=0x65ba26
+    length=int.from_bytes(player[off:off+4],'big')
+    unit=zlib.decompress(player[off+8:off+4+length]).decode('utf-8')
+    assert 'info: "Patchman v1.5"' in unit and 'Patchman v1.1' not in unit
+    package_log=(WORK/'test-results.log').read_text()
+    ui_log=(WORK/'ui-test-results.log').read_text()
+    assert re.search(r'Ran \d+ tests in ',package_log) and package_log.rstrip().endswith('OK')
+    assert 'test_update_from_public_v11_and_reinstall_v15_preserve_user_data' in package_log
+    assert 'test_v15_return_to_public_v11_preserves_data_and_can_update_again' in package_log
+    assert 'PASS continuous title:' in ui_log
+    payload={};upgs={};executables={}
+    for action,script,bundle in [('Install','install.sh','bundle.tar.gz'),('Remove','remove.sh',None),('ReturnToV1.1','return-v11.sh','return-v11.tar.gz')]:
+        # The tool reopens each UPG; compare all decoded members with this build.
+        members=[HERE/'scripts/exec_file.sh',HERE/'scripts'/script]
+        if bundle:members.append(WORK/bundle)
+        for i,source in enumerate(members):
+            expected=source.read_bytes();actual=(BUILD/('verify-'+action)/(str(i)+'.bin')).read_bytes()
+            assert actual[:len(expected)]==expected and not any(actual[len(expected):]),(action,i)
+        for p in (HERE/action).rglob('*'):
+            if not p.is_file():continue
+            name=p.relative_to(HERE).as_posix();data=p.read_bytes()
+            if p.name=='SWUpdate.xml':
+                xml=ET.fromstring(data)
+                assert xml.findtext('Common/Version')=='3.02'
+                assert xml.findtext('Package/Product')=='Patchman v1.5-stable - '+action
+            if p.name.startswith('disclaimer_'):
+                assert data.startswith(b'\xff\xfe')
+                text=data.decode('utf-16')
+                assert text.startswith('Patchman v1.5-stable - '+action)
+                assert 'test package' not in text.lower()
+            if p.suffix=='.exe':executables[name]=SHA(data)
+            if p.name=='NW_WM_FW.UPG':upgs[name]=SHA(data)
+            payload[name]=data
+    assert len(upgs)==3
     manifest['files']=[{k:v for k,v in f.items() if k!='source'} for f in manifest['files']]
-    manifest['release']={'firmware_payloads_unchanged':True,'upg_sha256':source_upg,'source_zip_sha256':receipt['source_zip_sha256']}
-    manifest['release']['distribution_revision']=receipt.get('distribution_revision','original-v1.1')
+    manifest['release']={
+        'distribution':'complete-first-install-and-update',
+        'public_folders':['Install','Remove','ReturnToV1.1'],
+        'return_to_v11_bundle_sha256':SHA((WORK/'return-v11.tar.gz').read_bytes()),
+        'upgrade_baseline':'public v1.1 complete installer; filesystem upgrade and reinstall tested',
+        'unit_information':'Patchman v1.5',
+        'upg_sha256':upgs,
+        'device_validation':'UI features reported working by author; final v1.5 first installation not separately device-tested',
+    }
     payload['manifest.json']=(json.dumps(manifest,indent=2)+'\n').encode()
     payload['README.md']=(HERE/'README.md').read_bytes()
     readme=payload['README.md'].decode('utf-8')
-    for required in ('Walkman One 3.02','ARTIST-PHOTOS','Album Artist','Direct Source','Bluetooth','newest','Remove'):
-        assert required in readme,required
-    assert 'Final confirmation is still pending' not in readme
-    for name,digest in source_upg.items():assert sha(payload[name])==digest
-    for name,digest in exe_hashes.items():assert sha(payload[name])==digest
-    payload['SHA256SUMS.txt']=''.join(sha(payload[name])+'  '+name+'\n' for name in sorted(payload)).encode()
-    for name,data in payload.items():write(HERE/ROOT/name,data)
-    target=HERE/'Patchman_NW-A55.zip';temporary=HERE/'Patchman_NW-A55.zip.tmp'
-    with zipfile.ZipFile(temporary,'w',zipfile.ZIP_DEFLATED) as z:
+    for phrase in ['Update from working v1.1','Required clean setup','Patchman v1.5','Sorting Options','Bluetooth','Direct Source','continuous','ARTIST-PHOTOS']:
+        assert phrase.lower() in readme.lower(),phrase
+    payload['SHA256SUMS.txt']=''.join(SHA(v)+'  '+k+'\n' for k,v in sorted(payload.items())).encode()
+    target=HERE/'Patchman_NW-A55.zip';temp=HERE/'Patchman_NW-A55.zip.tmp'
+    with zipfile.ZipFile(temp,'w',zipfile.ZIP_DEFLATED) as z:
         for name,data in sorted(payload.items()):z.writestr(ROOT+'/'+name,data)
-    with zipfile.ZipFile(temporary) as z:
+    with zipfile.ZipFile(temp) as z:
         assert z.testzip() is None
         assert set(z.namelist())=={ROOT+'/'+name for name in payload}
-        assert not any('ReturnTo' in name for name in z.namelist())
+        assert not any('ReturnToConfirmed/' in name or '-Test/' in name for name in z.namelist())
         for line in z.read(ROOT+'/SHA256SUMS.txt').decode().splitlines():
-            digest,name=line.split(None,1);assert sha(z.read(ROOT+'/'+name))==digest
-        for name,digest in source_upg.items():assert sha(z.read(ROOT+'/'+name))==digest
-        for name in z.namelist():
-            if pathlib.PurePosixPath(name).name.startswith('disclaimer_'):
-                assert z.read(name).startswith(b'\xff\xfe')
-                assert z.read(name).decode('utf-16').startswith('Patchman v1.1-stable')
-    temporary.replace(target)
-    digest=sha(target.read_bytes())
-    write(HERE/'Patchman_NW-A55.zip.sha256',(digest+'  Patchman_NW-A55.zip\n').encode())
-    report={'version':VERSION,'zip_sha256':digest,'zip_crc':'passed','all_packaged_file_checksums':'passed','upgs_identical_to_device_confirmed_build':source_upg,'executables_identical_to_confirmed_source':exe_hashes,'source_bundle_sha256':receipt['source_bundle_sha256'],'installer_xml_firmware_version':'3.02 unchanged','all_notices':'UTF-16 LE with BOM','public_folders':['Install','Remove'],'device_confirmed_features':receipt['device_confirmed']}
-    report['distribution_revision']=receipt.get('distribution_revision','original-v1.1')
-    if 'clean_install_tests' in receipt:report['clean_install_tests']=receipt['clean_install_tests']
-    write(HERE/'release-verification.json',(json.dumps(report,indent=2)+'\n').encode())
-    print('PASS final release: unchanged confirmed UPGs/executables, stable labels, UTF-16 notices, clean folders, manifest and all file checksums')
+            digest,name=line.split(None,1);assert SHA(z.read(ROOT+'/'+name))==digest
+    temp.replace(target)
+    for name,data in payload.items():
+        p=HERE/ROOT/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+    digest=SHA(target.read_bytes())
+    (HERE/'Patchman_NW-A55.zip.sha256').write_bytes((digest+'  Patchman_NW-A55.zip\n').encode())
+    report=dict(version='1.5-stable',zip_sha256=digest,all_file_checksums='passed',
+                unit_information='Patchman v1.5',upg_round_trips='passed',upg_sha256=upgs,
+                executable_sha256=executables,notices='UTF-16LE with BOM',
+                filesystem_tests=int(re.search(r'Ran (\d+) tests',package_log)[1]),
+                fresh_install_and_public_v11_upgrade='passed in filesystem fixtures',
+                return_to_public_v11_and_update_again='passed in filesystem fixtures',
+                qml_layout_lifecycle_and_fallback='passed on host Qt',
+                device_validation=manifest['release']['device_validation'])
+    (HERE/'release-verification.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
+    print('PASS v1.5 release: fresh/update tests, Unit Information, UPG round trips, UTF-16 notices, clean public ZIP and checksums')
     print('DONE:',target)
     print('SHA256:',digest)
+
 if __name__=='__main__':main()

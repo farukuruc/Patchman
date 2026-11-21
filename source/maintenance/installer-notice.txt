@@ -1,0 +1,23 @@
+Patchman v1.5-stable - Install
+
+For Sony NW-A55 with supported Walkman One 3.02. This package does not install Walkman One. No WM1Z sound signature is required.
+
+UPDATING WORKING PATCHMAN v1.1:
+Run this Install tool directly. Do not remove Patchman first. You do not need to return to stock, reinstall Walkman One or reset the player for this update. Back up your important files and keep the old ZIP.
+
+FIRST INSTALLATION OR OLD/UNKNOWN SETUP:
+Read README.md first. Back up your files, remove active Patchman with its matching remover if needed, return fully to stock using the correct StockRevert and official Sony update, then install a fresh official Walkman One for NW-A50. Confirm it works before installing Patchman. A settings reset alone is not a stock return. A factory reset is optional and erases internal user files.
+
+This is a complete package. It includes album Play and total time, album years, Sorting Options, artist photos, queue Remaining time, Parametric EQ, optional Cassette Screen, Audio Path, Go to Album / Album Artist, the new shared top bar and battery percentage, balanced player controls, and continuous long song titles.
+
+Go to still requires Playback Settings > Artist List Display > Album Artist.
+
+The Patchman installer keeps music, PEQ files, artist photos and supported preferences. Earlier stock-return or reset steps can erase files, so check your backup. Keep the SD card inserted during the Patchman installation if your music is on it, and let Sony finish updating the library.
+
+When installation is complete, disconnect USB and fully power the player off and on. Turning only the screen off is not a full restart. Check that Unit Information shows Patchman v1.5.
+
+On the first PEQ installation, start without USB and play wired PCM/FLAC audio before the next full restart. A working verified v1.1 update keeps its audio verification. The PEQ audio engine is unchanged.
+
+Direct Source + PEQ was tested with wired headphones. Bluetooth playback and PEQ were not tested. Battery percentage is Sony's reported value and may change quickly when USB is connected or removed.
+
+If installation rejects the player or reports low space, keep the exact error and Patchman-install.log. Do not bypass its checks. See README.md for the full steps and troubleshooting.

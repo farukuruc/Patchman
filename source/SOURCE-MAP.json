@@ -1,16 +1,52 @@
 {
-  "version": "1.1-stable",
-  "release_zip_sha256": "8028186b7eae489c4394ad8ffccd300b54c21fdc7903ff5397dcde22b434f7ce",
+  "version": "1.5-stable",
+  "release_zip_sha256": "defa2b99758edc4e7dcd1da9bdf4e5196efc6152bc6dc639b7c052d86a7e3a78",
+  "player_resource_count": 25,
   "qml_roundtrip": "exact released player reconstructed from source edits",
   "files": [
+    {
+      "path": "patches/qml/5e7b36.json",
+      "sha256": "2b7f19a434c5535332bc0d2537ce566898accc129726d90521276faeba95660f",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/5ec469.json",
+      "sha256": "67dce4402fbb80d6a1468473bec0d40e347aed4f808ca2e2254b98237f602d0a",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/5edccc.json",
+      "sha256": "8ca082c2c0da7bb5405c0124bfe9f2b7e69d3a6595344674b96f1469c8b548a0",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
     {
       "path": "patches/qml/5ef44c.json",
       "sha256": "7aa5e001140db7c42da0ba8c87858b86167fe615a4ee6363da732ee59c8776a5",
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
     },
     {
+      "path": "patches/qml/5eff13.json",
+      "sha256": "a1eebcf337ad1111aff72ad56f636c60920c5402f98f2ff4321388856627f457",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
       "path": "patches/qml/5f7d91.json",
       "sha256": "ad83bef406d11baa6756fb3d4dd3af3f5f188347d62bb6ecec47c61825ed85fb",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/5f9527.json",
+      "sha256": "f8e12e40e9fbb314dc2ccb4291f3b7fee3aea4560f704a3626ba481060704e78",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/5fbb51.json",
+      "sha256": "71680ea07e45fc29cd48d21e5c67906ddc4c2c2d1eb8452a3cdb14b22adba499",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/5fefd6.json",
+      "sha256": "39ba5a391bc6cce8c776cf3c0ebe45548d8b5e8eb2721d584a94a60d6ae85365",
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
     },
     {
@@ -20,12 +56,27 @@
     },
     {
       "path": "patches/qml/60eaae.json",
-      "sha256": "89233c98c0485658929c70b7bae5f6b4db65bc4b7cccb42c67c2a20be4a50b90",
+      "sha256": "8788108b1c74e500f0dd91c8ece4fcfc0c939d1c89778ed2c55e7b2033c28982",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/610c5c.json",
+      "sha256": "6bd486f8cfe45c28e8e3a581027adae4541d26af4254e0265019fa2cc750ec04",
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
     },
     {
       "path": "patches/qml/611889.json",
       "sha256": "812ad264277b65db264309cb14b648dda3485408beb860e39140fb9c36a25ac0",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/61f1db.json",
+      "sha256": "a83ceb8a15a974b040b692cc86502813a400e91d1ed144397256544d1342d2f0",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/6315a1.json",
+      "sha256": "ccb581d7d3470405b43c3ff985cebd423b9097a6dfd3d6b3cda4b95a3ebd92e0",
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
     },
     {
@@ -36,6 +87,11 @@
     {
       "path": "patches/qml/632325.json",
       "sha256": "4386d05b1a46b6a266ac5ed49a2baf7743f22478330bed36eb1582f4a0901f10",
+      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/634b92.json",
+      "sha256": "f23b1326796e417b3675212123444b517936369c0112c76d23b12b9b70aa36fc",
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
     },
     {
@@ -60,12 +116,12 @@
     },
     {
       "path": "patches/qml/649c14.json",
-      "sha256": "037c48f9ff11e130362373ec66cad7493af2e3207359ea4673a15e27246f8d89",
+      "sha256": "b3802e4eba557d5167fa537861f562c5753c8910a4ec7d2d523b1b3a66653e11",
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
     },
     {
       "path": "patches/qml/65ba26.json",
-      "sha256": "ac0a29c04f958d8aef45eddbe80d16c87b5ca189e6261117db2c666c6570051a",
+      "sha256": "63f6f623d21d331eca29e5c25e723da0de81cc99daf0f6364d35aa04c413f08d",
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
     },
     {
@@ -85,8 +141,8 @@
     },
     {
       "path": "patches/player.json",
-      "sha256": "3ea127aaf4f4c3912303c46fc334671f5c193a09effc90e8a446fd5d1c1dee71",
-      "origin": "Verified against released v1.1 player"
+      "sha256": "e8933a04921727af2b9e305b725c640014ed313bd82c221381d30e17e6156a3b",
+      "origin": "Verified byte-for-byte against released v1.5 player"
     },
     {
       "path": "src/ui/PeqPanel.qml",
@@ -139,18 +195,68 @@
       "origin": "Exact released text payload: photo-component"
     },
     {
+      "path": "src/ui/SortingOptions.qml",
+      "sha256": "a942290769a13f91abc7983552f25b3e761569cccb8794e0c54e2f9170a95494",
+      "origin": "Exact released text payload: sort-panel"
+    },
+    {
+      "path": "src/ui/ContinuousTitle.qml",
+      "sha256": "f9fa5582fbdc7ca0a0069f356b714a68b667571e861f6496f5ba15898e1de64f",
+      "origin": "Exact released text payload: continuous-title"
+    },
+    {
+      "path": "src/ui/topbar/BatteryIndicator.qml",
+      "sha256": "385aa1c1e67dcd81fc1129865baf1fd180675c29b4d4ed6d0509c687732dca76",
+      "origin": "Exact released text payload: topbar-batteryindicator"
+    },
+    {
+      "path": "src/ui/topbar/BatteryState.qml",
+      "sha256": "35598ff81c59c565678e1ee09b8c55710e9283e2604a224694ec2bb9bee73cd1",
+      "origin": "Exact released text payload: topbar-batterystate"
+    },
+    {
+      "path": "src/ui/topbar/HeaderLayout.js",
+      "sha256": "a2dfdd2bd754335c66ba2b0cd49040b46b2fd9734809b6a6ae50d220cfa6c8af",
+      "origin": "Exact released text payload: topbar-headerlayout"
+    },
+    {
+      "path": "src/ui/topbar/NativeBatteryIcon.qml",
+      "sha256": "9c8e6a71c9532c2be705340ab69c87507f677bbbc19849fe9c5e636e1932eaf6",
+      "origin": "Exact released text payload: topbar-nativebatteryicon"
+    },
+    {
+      "path": "src/ui/topbar/NativeGlyph.qml",
+      "sha256": "6c5d1ce281c85d0f3ea79e86fc693f614a05b3981df7883ecf1801f064bf20d0",
+      "origin": "Exact released text payload: topbar-nativeglyph"
+    },
+    {
+      "path": "src/ui/topbar/PlaybackGlyph.qml",
+      "sha256": "378a3baeacc6fd99964012e89bf5b93d788c560b2d7c2af8e86a5fbe3b7da3aa",
+      "origin": "Exact released text payload: topbar-playbackglyph"
+    },
+    {
+      "path": "src/ui/topbar/RightCluster.qml",
+      "sha256": "5e37f7fb573e30683151bb3c61e6eabed92b80417bb4af090714a180f08685ab",
+      "origin": "Exact released text payload: topbar-rightcluster"
+    },
+    {
+      "path": "src/ui/topbar/SpeakerGlyph.qml",
+      "sha256": "3714c03b67c2d808b35596b0bc54b4384a70ceae8da6481dacf1737d91af695c",
+      "origin": "Exact released text payload: topbar-speakerglyph"
+    },
+    {
       "path": "src/runtime/boot-guard.sh",
       "sha256": "41da865dd8395ffad28121d9ddd51eec5c79fe0ed1ab7d95bcc909b1b707ff0e",
       "origin": "Exact released text payload: guard"
     },
     {
       "path": "src/runtime/player-launch.sh",
-      "sha256": "c53c173613790e602fe8f4bba0f62378726dd12806de4ab7b0edd368a3cffa76",
+      "sha256": "1d61751a34427fdb6ad6e362be67aed8cf62c0b945645496aa18729ed849ecc1",
       "origin": "Exact released text payload: launcher"
     },
     {
       "path": "src/runtime/log-policy.sh",
-      "sha256": "20db2711758b0c05804623d6955ba6ce46695ee02be01a1a9c511f4800b1b032",
+      "sha256": "ed5454ff1302dd0b61f03cb566006ec4d861e61d8e842b918b907e57c64d5d79",
       "origin": "Exact released text payload: log-policy"
     },
     {
@@ -160,12 +266,22 @@
     },
     {
       "path": "src/installer/install.sh",
-      "sha256": "19e105bcb75c5060682e695d51d658b964980a7019d02bb38287b958d454ccb3",
+      "sha256": "d1804877c584d424942aa78f27401e3237259b4879a6f75b3f61873b8d979a00",
       "origin": "Exact clean-installer source used by the released firmware"
     },
     {
       "path": "src/installer/remove.sh",
-      "sha256": "3304399ebee77992e8bca82831d9dff4340b11f2282b50930e23eda53d0262b1",
+      "sha256": "4119977f64ad9eb1ced08b95f3bba8c58d153840bc3486dea95b817115b3d185",
+      "origin": "Exact clean-installer source used by the released firmware"
+    },
+    {
+      "path": "src/installer/return-v11.sh",
+      "sha256": "6e0db24a329c7e7ee60f7829fc7760516a272f8c338d39325b1135e0821100f9",
+      "origin": "Exact clean-installer source used by the released firmware"
+    },
+    {
+      "path": "src/installer/exec_file.sh",
+      "sha256": "9e06619a7a9fd85607fd2f6e2ecf92fbbc625227f4eda398bb616f6553f4d044",
       "origin": "Exact clean-installer source used by the released firmware"
     },
     {
@@ -195,18 +311,18 @@
     },
     {
       "path": "src/library/native-years.c",
-      "sha256": "5976470bd9937deb1db5be68d3131ac5fb2d63054182ae201dc94dc904b1596c",
-      "origin": "outputs/Patchman-AlbumYears-Native/source/native-years.c"
+      "sha256": "2de9b124f0bb82f287c097d7efeb8bcf76d67eeb855e06df44a34f7702c00c86",
+      "origin": "outputs/Patchman-SortOptions/source/native-years.c"
     },
     {
       "path": "src/library/list-layout.h",
       "sha256": "7722cd8dc88f112210e758fde4554d3ad4cba09cf79005ec2a001bef1a2534fc",
-      "origin": "outputs/Patchman-AlbumYears-Native/source/list-layout.h"
+      "origin": "outputs/Patchman-SortOptions/source/list-layout.h"
     },
     {
       "path": "src/library/symbols.h",
       "sha256": "b82d8d8ed30e99984e8e0b838ab0b464b228994d0cef5a508ab12f720354ef06",
-      "origin": "outputs/Patchman-AlbumYears-Native/source/symbols.h"
+      "origin": "outputs/Patchman-SortOptions/source/symbols.h"
     },
     {
       "path": "third_party/cinder/cinder-home/src/crossfeed.h",
@@ -290,18 +406,123 @@
     },
     {
       "path": "tests/reference/test-full-installer.py",
-      "sha256": "184c900c800c36577854e5aa9ffb3f23c9431dec71ff722226dae4fedcffa8a9",
-      "origin": "outputs/Patchman-FirstInstallFix/tests/test-package.py"
+      "sha256": "9faf26b58d3b06c37cc429bfdd11947307ff8edf06719a82601c7786916d2529",
+      "origin": "outputs/Patchman-v1.5-Final/tests/test-package.py"
     },
     {
       "path": "maintenance/assemble-public-release.py",
-      "sha256": "9de5d21b1434a2434e3bd31b209d3e13e74b3ff9f07e92fdf59ef646f76bcc14",
-      "origin": "outputs/Patchman-v1.1-Final/build-release.py"
+      "sha256": "15b0fc3a495a340960e9a12cb6c116ac7c6355ae1f90128cfb08ace83c04cfe8",
+      "origin": "outputs/Patchman-v1.5-Final/zip-release.py"
+    },
+    {
+      "path": "src/ui/controls/ShuffleButton.qml",
+      "sha256": "76bbe7a49d7e33d85448f3a627aaf2a2321356146046ac736cfd32ccb10cab53",
+      "origin": "Exact custom control embedded in the released v1.5 player; player patches install this code"
+    },
+    {
+      "path": "src/ui/controls/RepeatButton.qml",
+      "sha256": "c2904030876f34e1f5a3c490f2b0048d417755e47ac36e46d21b28e758e57090",
+      "origin": "Exact custom control embedded in the released v1.5 player; player patches install this code"
+    },
+    {
+      "path": "src/ui/icons/GoToIcon.json",
+      "sha256": "2394a978e62ac546bf8bf630b295a04e3d57d4a41db29e000f407f122a41eb69",
+      "origin": "Exact Patchman Go to icon as a text asset; no Sony image included"
+    },
+    {
+      "path": "tests/sorting.c",
+      "sha256": "d6b36be8bc52a44d7657052b6595bf3b90dd58a8e6da639d18a35b030d30a844",
+      "origin": "outputs/Patchman-SortOptions/tests/sorting.c"
+    },
+    {
+      "path": "tests/sort-fixture.py",
+      "sha256": "a03f70ec35f1905ff0c283a14504c6e831e0c43b31067cb30f28ae8966302da3",
+      "origin": "outputs/Patchman-SortOptions/tests/fixture.py"
+    },
+    {
+      "path": "maintenance/prepare.py",
+      "sha256": "4252b4ecc1749fcc854634f072287f6d2c7088a819234529ab631c35dd13cd28",
+      "origin": "outputs/Patchman-v1.5-Final/prepare.py"
+    },
+    {
+      "path": "maintenance/build.sh",
+      "sha256": "f4ce8f7d6cc9bfbe044111ef798cc347b4eee80162d1bb3a354c47f9e45173fa",
+      "origin": "outputs/Patchman-v1.5-Final/build.sh"
+    },
+    {
+      "path": "maintenance/installer-notice.txt",
+      "sha256": "194cbe6b42df71e237bd4c7fd49ece5013c3e0265afb31952eb9614497d25fcc",
+      "origin": "outputs/Patchman-v1.5-Final/installer-notice.txt"
+    },
+    {
+      "path": "tests/reference/test-prepare.py",
+      "sha256": "1ce415a6ada25008c56ef49acb35d2e8025efeef1c19da55f01291a78a67e54f",
+      "origin": "outputs/Patchman-v1.5-Final/tests/test-prepare.py"
+    },
+    {
+      "path": "tests/reference/prepare-fixture.py",
+      "sha256": "eda825585170112573428e4b61317187defe43085e03454c9d03014d60f93294",
+      "origin": "outputs/Patchman-v1.5-Final/tests/prepare-fixture.py"
+    },
+    {
+      "path": "tests/reference/layout.cpp",
+      "sha256": "aabcd6725ef60bb5e6222d2fe4f449d01d70040b08569b1a32c5f617879ef129",
+      "origin": "outputs/Patchman-v1.5-Final/tests/layout.cpp"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "bde1c80f2e79a18e7ecb8f9350a50a7611c1f4c50ec5f23a26a6526c4ba014d9",
+      "origin": "Maintained public source documentation and portable tools"
+    },
+    {
+      "path": "docs/BUILD.md",
+      "sha256": "676c6ab6853ab0c7d4fe67e66ad344b1612dd51d8e331e8ca69b5f4cecc80855",
+      "origin": "Maintained public source documentation and portable tools"
+    },
+    {
+      "path": "README.md",
+      "sha256": "54d64a677c02668c5bed92593f17bd503ca43ff7c220144f65361d6de720ff4b",
+      "origin": "Maintained public source documentation and portable tools"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "d81294f9e2b8401ff0fb7a2a4a914159ab32c8e1d2c7fdb9e439807998e2907f",
+      "origin": "Maintained public source documentation and portable tools"
+    },
+    {
+      "path": "tools/apply-player-patches.py",
+      "sha256": "89554214f00d3921b0fe55b663a425290c10b14019ac9c61ee91c255947bebb8",
+      "origin": "Maintained public source documentation and portable tools"
+    },
+    {
+      "path": "tools/check-host.sh",
+      "sha256": "22e047ff2fca76aaa574c37e9d6dbc5eecf623e11eee97551a0f7eb9ae8d5bbd",
+      "origin": "Maintained public source documentation and portable tools"
+    },
+    {
+      "path": "tools/check-source.py",
+      "sha256": "5b8f430becf4d3b2201060e3632c307818323cec3684c253043e4f8f933764e7",
+      "origin": "Maintained public source documentation and portable tools"
+    },
+    {
+      "path": "tools/check-ui.sh",
+      "sha256": "c06723f5929c94f2a079d242ae246095389cc2fd7d1ea01ae6a08f863cbe5c62",
+      "origin": "Maintained public source documentation and portable tools"
+    },
+    {
+      "path": "tests/ui/prepare-fixture.py",
+      "sha256": "7f202fa3caeb5faf058cca9573dcc5ec98312d4ff1339cea956c530b6c307236",
+      "origin": "Portable variant of the v1.5 real-player QML fixture; original firmware is supplied locally"
+    },
+    {
+      "path": "tests/ui/layout.cpp",
+      "sha256": "aabcd6725ef60bb5e6222d2fe4f449d01d70040b08569b1a32c5f617879ef129",
+      "origin": "outputs/Patchman-v1.5-Final/tests/layout.cpp"
     },
     {
       "path": "release-manifest.json",
-      "sha256": "291d585ee01cbfaece86b735b44214e8a3c93b7497b459cb16b6a0866a9941a9",
-      "origin": "Component identities from public v1.1; no build-machine paths"
+      "sha256": "3affef95ecdf786aa95e63900b4c26e6c6cdd9100ae71ee7414d66bbc8f2f6db",
+      "origin": "Component identities from public v1.5; no build-machine paths"
     }
   ],
   "limitations": [

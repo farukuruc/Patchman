@@ -1,0 +1,84 @@
+{
+  "before_sha256": "98ff0f2a756dc1e0d2443a88251422d7155a62174e588f816f38c314b68969ab",
+  "after_sha256": "8fe77ef34e0f54880684cff7b70ddd3ba8a69d4988b49a0d111d5d57241a0ee2",
+  "edits": [
+    {
+      "start": 0,
+      "delete": 7,
+      "insert": []
+    },
+    {
+      "start": 9,
+      "delete": 1,
+      "insert": []
+    },
+    {
+      "start": 11,
+      "delete": 63,
+      "insert": [
+        "id:stateBar\n",
+        "property bool compactActive: false\n",
+        "width: 480\n",
+        "height: 12\n",
+        "color : viewstyle.bgcolor.D1\n",
+        "property bool isEnableStatusBarMouseArea\n",
+        "property var stateIconList\n",
+        "signal statusBarClicked()\n",
+        "Row{\n",
+        "readonly property string iconQmlPath: \"icon/\"\n",
+        "readonly property var iconQml:[\"\",\"StatusIcon.qml\",\"VolumeIcon.qml\",\"VolumeChangeIcon.qml\",\"BatteryRemainingNumIcon.qml\",\"BatteryRemainingImageIcon.qml\"]\n",
+        "id:row\n",
+        "Repeater {\n",
+        "id:repeater\n",
+        "model:stateIconList\n",
+        "Loader{\n",
+        "id:loader\n",
+        "objectName: \"nativeStatusSlot\"\n",
+        "property string movedName: String(ParamAnimationImageRole)\n",
+        "property bool hiddenPlayback: stateBar.compactActive && qmlNum === 1 &&\n",
+        "/^stat_notify_audio_track_(play|pause|(just_)?(rewind|fast_forward)|next|previous)\\.png$/.test(movedName)\n",
+        "property bool moved: stateBar.compactActive && qmlNum === 1 && Number(ParamIntFrameSize) > 0 &&\n",
+        "(movedName === \"stat_sys_bluetooth.png\" || movedName === \"stat_sys_nfc.png\" || /^stat_sys_battery_[a-z0-9_]+\\.png$/.test(movedName))\n",
+        "property int qmlNum:QmlIntRole+0\n",
+        "height:stateBar.height\n",
+        "width:ParamIntFrameSize\n",
+        "source:!moved && !hiddenPlayback && ( 1 <= qmlNum && 5 >= qmlNum ) ? row.iconQmlPath + row.iconQml[qmlNum]:\"\"\n",
+        "Binding{\n",
+        "target:loader.item\n",
+        "when:loader.status == Loader.Ready\n",
+        "property:'animationImage'\n",
+        "value:ParamAnimationImageRole\n"
+      ]
+    },
+    {
+      "start": 75,
+      "delete": 0,
+      "insert": [
+        "Binding{\n",
+        "target:loader.item\n",
+        "when:loader.status == Loader.Ready\n",
+        "property:'param'\n",
+        "value:ParamQvariantRole\n",
+        "}\n",
+        "}\n",
+        "}\n",
+        "}\n",
+        "ClickArea {\n",
+        "readonly property real feedBackRectOpacity: 0.2\n",
+        "readonly property color feedBackRectBgColor: \"#ffffff\"\n",
+        "anchors.fill:parent\n",
+        "enabled: isEnableStatusBarMouseArea\n",
+        "onClicked: statusBarClicked()\n",
+        "Rectangle {\n",
+        "id: feedBackRect\n",
+        "anchors.fill: parent\n",
+        "visible: parent.pressedButton\n",
+        "opacity: parent.feedBackRectOpacity\n",
+        "color: parent.feedBackRectBgColor\n",
+        "}\n",
+        "}\n",
+        "}\n"
+      ]
+    }
+  ]
+}

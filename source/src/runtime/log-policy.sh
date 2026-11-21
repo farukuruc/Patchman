@@ -3,7 +3,8 @@ PATCHMAN_BB=/xbin/busybox
 [ -x "$PATCHMAN_BB" ] || PATCHMAN_BB=/system/xbin/busybox
 PATCHMAN_RUN=/data/sony-album-test/run
 PATCHMAN_RUNTIME=/data/sony-peq/runtime
-PATCHMAN_DEBUG=0
+PATCHMAN_DEBUG=1
+# HeaderProbe1: use the existing capped stderr logger for this temporary test.
 [ ! -f /contents/Patchman-debug ] || PATCHMAN_DEBUG=1
 
 pm_cap_log() {

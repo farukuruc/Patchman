@@ -1,6 +1,6 @@
 {
   "before_sha256": "9df33e285442df2d4df8508455a42ef68a0ac36f3bbd2679acfb273d48d8121f",
-  "after_sha256": "b27d1c78d3664ae94f625806735bebf864480d7843bdf31323f07400e139f955",
+  "after_sha256": "fd2010942b8c52820e6ed77a249ad2f48fc2752b5488aa1738ef28bccb58cd9b",
   "edits": [
     {
       "start": 0,
@@ -72,7 +72,7 @@
         "level: base.model.level(i),\n",
         "groupL1: base.model.parentIndex(i),\n",
         "type: base.model.type(i),\n",
-        "coverIcon:base.model.coverIcon(i)})\n",
+        "coverIcon:go?\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABYAgMAAAA8d8mGAAAADFBMVEX////////////////1pQ5zAAAABHRSTlMAVar/oA4xLwAAAIhJREFUeNpjYBgFo4BkwLYqAE1k//+fqALsTxjyG1BE5B0YmB6giFRAMQJ8AGI5FBEmoCHcDigiQEOYUY3eARQ9gCKiy8DAeAFFBGQIqvVMFyAWQsAqEPjCwLAByU9AgCKCqQtscgO6yXoYtmO4ENMXmD7FDA3MEMMMVcyQx4wdLDE4CkYBQQAAHPksZWkdHwAAAAAASUVORK5CYII=\":base.model.coverIcon(i)})\n",
         "}\n",
         "}\n",
         "}\n",
