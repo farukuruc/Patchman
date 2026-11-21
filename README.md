@@ -1,4 +1,4 @@
-# Patchman 1.1-stable
+# Patchman
 
 **Small, useful features for the Sony NW-A55 with Walkman One 3.02.**
 
