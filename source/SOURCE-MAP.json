@@ -1,7 +1,7 @@
 {
-  "version": "1.5-stable",
-  "release_zip_sha256": "defa2b99758edc4e7dcd1da9bdf4e5196efc6152bc6dc639b7c052d86a7e3a78",
-  "player_resource_count": 25,
+  "version": "1.5.1-stable",
+  "release_zip_sha256": "67349be8b7df84bdcef73e49006bf586d11f5a4eb366bd4dcf6b78ff6f219938",
+  "player_resource_count": 24,
   "qml_roundtrip": "exact released player reconstructed from source edits",
   "files": [
     {
@@ -11,7 +11,7 @@
     },
     {
       "path": "patches/qml/5ec469.json",
-      "sha256": "67dce4402fbb80d6a1468473bec0d40e347aed4f808ca2e2254b98237f602d0a",
+      "sha256": "7ff630d2353b269edd239bf5bcfb22a77c8875624be7e8e1b1200bcf0a03c466",
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
     },
     {
@@ -70,13 +70,8 @@
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
     },
     {
-      "path": "patches/qml/61f1db.json",
-      "sha256": "a83ceb8a15a974b040b692cc86502813a400e91d1ed144397256544d1342d2f0",
-      "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
-    },
-    {
       "path": "patches/qml/6315a1.json",
-      "sha256": "ccb581d7d3470405b43c3ff985cebd423b9097a6dfd3d6b3cda4b95a3ebd92e0",
+      "sha256": "b453c18d84dae185081c2b001ba1f8b653e5851a7b5f997c57e5e3c5a25a7291",
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
     },
     {
@@ -121,13 +116,18 @@
     },
     {
       "path": "patches/qml/65ba26.json",
-      "sha256": "63f6f623d21d331eca29e5c25e723da0de81cc99daf0f6364d35aa04c413f08d",
+      "sha256": "f8954e6dcb639d00f9fab0a461fcb5e1a011800aff2c43152a934fdd2dba1f25",
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
     },
     {
       "path": "patches/qml/83c118.json",
       "sha256": "634a9431ba4e2917519d3712dfd89424283c7397ad024617f4b9889200a5f244",
       "origin": "Source-level edits against user-supplied Sony QML; Sony retains its original copyright"
+    },
+    {
+      "path": "patches/qml/61f1db.json",
+      "sha256": "acfaaab7c9393109cf2562f7a56e08455c0414118c9dc3fd90da6c4f9b726381",
+      "origin": "Retired continuous-loop patch; original Sony marquee is unchanged in v1.5.1"
     },
     {
       "path": "patches/external/photo-view.json",
@@ -141,8 +141,8 @@
     },
     {
       "path": "patches/player.json",
-      "sha256": "e8933a04921727af2b9e305b725c640014ed313bd82c221381d30e17e6156a3b",
-      "origin": "Verified byte-for-byte against released v1.5 player"
+      "sha256": "19252b91828a263c10ee994579b41cc4abb644a78d42c4cc784130e86d5abf4e",
+      "origin": "Verified byte-for-byte against released v1.5.1 player"
     },
     {
       "path": "src/ui/PeqPanel.qml",
@@ -206,7 +206,7 @@
     },
     {
       "path": "src/ui/topbar/BatteryIndicator.qml",
-      "sha256": "385aa1c1e67dcd81fc1129865baf1fd180675c29b4d4ed6d0509c687732dca76",
+      "sha256": "233112513ea117e2946ece5088d6f44c6b92c72d70bbe5670aa9c8ab41eee939",
       "origin": "Exact released text payload: topbar-batteryindicator"
     },
     {
@@ -266,18 +266,18 @@
     },
     {
       "path": "src/installer/install.sh",
-      "sha256": "d1804877c584d424942aa78f27401e3237259b4879a6f75b3f61873b8d979a00",
+      "sha256": "c1d55df009f42b0858e7142bacc309fef9b31e64461508fbf1e13e3b6b14ea51",
       "origin": "Exact clean-installer source used by the released firmware"
     },
     {
       "path": "src/installer/remove.sh",
-      "sha256": "4119977f64ad9eb1ced08b95f3bba8c58d153840bc3486dea95b817115b3d185",
+      "sha256": "a440edb1333d8da13807b86acc1aa7b6b1b6b6fe1b874d64560b2f832f23c15e",
       "origin": "Exact clean-installer source used by the released firmware"
     },
     {
       "path": "src/installer/return-v11.sh",
       "sha256": "6e0db24a329c7e7ee60f7829fc7760516a272f8c338d39325b1135e0821100f9",
-      "origin": "Exact clean-installer source used by the released firmware"
+      "origin": "Legacy v1.5 return reference; not distributed in v1.5.1"
     },
     {
       "path": "src/installer/exec_file.sh",
@@ -406,23 +406,23 @@
     },
     {
       "path": "tests/reference/test-full-installer.py",
-      "sha256": "9faf26b58d3b06c37cc429bfdd11947307ff8edf06719a82601c7786916d2529",
-      "origin": "outputs/Patchman-v1.5-Final/tests/test-package.py"
+      "sha256": "d1a170d95bcd85b13751a9141df2c25ba28ea022b9f080f17db1a4f47642dba2",
+      "origin": "outputs/Patchman-v1.5.1/tests/test-package.py"
     },
     {
       "path": "maintenance/assemble-public-release.py",
-      "sha256": "15b0fc3a495a340960e9a12cb6c116ac7c6355ae1f90128cfb08ace83c04cfe8",
-      "origin": "outputs/Patchman-v1.5-Final/zip-release.py"
+      "sha256": "42c34e7986884666086bf19d0a79b0c3dd28f43e3f72858e11b8e2b561ab5f48",
+      "origin": "outputs/Patchman-v1.5.1/zip-release.py"
     },
     {
       "path": "src/ui/controls/ShuffleButton.qml",
       "sha256": "76bbe7a49d7e33d85448f3a627aaf2a2321356146046ac736cfd32ccb10cab53",
-      "origin": "Exact custom control embedded in the released v1.5 player; player patches install this code"
+      "origin": "Exact custom control embedded in the released v1.5.1 player; player patches install this code"
     },
     {
       "path": "src/ui/controls/RepeatButton.qml",
       "sha256": "c2904030876f34e1f5a3c490f2b0048d417755e47ac36e46d21b28e758e57090",
-      "origin": "Exact custom control embedded in the released v1.5 player; player patches install this code"
+      "origin": "Exact custom control embedded in the released v1.5.1 player; player patches install this code"
     },
     {
       "path": "src/ui/icons/GoToIcon.json",
@@ -441,33 +441,33 @@
     },
     {
       "path": "maintenance/prepare.py",
-      "sha256": "4252b4ecc1749fcc854634f072287f6d2c7088a819234529ab631c35dd13cd28",
-      "origin": "outputs/Patchman-v1.5-Final/prepare.py"
+      "sha256": "5e51ea7174f72605040764c256c8b173e4d94045212294d9650f78d1e822ff50",
+      "origin": "outputs/Patchman-v1.5.1/prepare.py"
     },
     {
       "path": "maintenance/build.sh",
-      "sha256": "f4ce8f7d6cc9bfbe044111ef798cc347b4eee80162d1bb3a354c47f9e45173fa",
-      "origin": "outputs/Patchman-v1.5-Final/build.sh"
+      "sha256": "09c56369d8c30add53bfcfee2bfec36998c2bd11e7b9a88bc2cb4aa0d51d84c3",
+      "origin": "outputs/Patchman-v1.5.1/build.sh"
     },
     {
       "path": "maintenance/installer-notice.txt",
-      "sha256": "194cbe6b42df71e237bd4c7fd49ece5013c3e0265afb31952eb9614497d25fcc",
-      "origin": "outputs/Patchman-v1.5-Final/installer-notice.txt"
+      "sha256": "48df9be5060556aeef4f71b1e7c85575ab57244be4cf210a2d7cec29cd1e423d",
+      "origin": "outputs/Patchman-v1.5.1/installer-notice.txt"
     },
     {
       "path": "tests/reference/test-prepare.py",
-      "sha256": "1ce415a6ada25008c56ef49acb35d2e8025efeef1c19da55f01291a78a67e54f",
-      "origin": "outputs/Patchman-v1.5-Final/tests/test-prepare.py"
+      "sha256": "ea8f549696d72719ed1f0921fb357dacd6263ea79f14a5cc36cdde672ea7608c",
+      "origin": "outputs/Patchman-v1.5.1/tests/test-prepare.py"
     },
     {
       "path": "tests/reference/prepare-fixture.py",
-      "sha256": "eda825585170112573428e4b61317187defe43085e03454c9d03014d60f93294",
-      "origin": "outputs/Patchman-v1.5-Final/tests/prepare-fixture.py"
+      "sha256": "d0c09a0b3f8cb343d5d2edf0655f224d6c9e09fd218d3ebb109ee10f30c169ef",
+      "origin": "outputs/Patchman-v1.5.1/tests/prepare-fixture.py"
     },
     {
       "path": "tests/reference/layout.cpp",
-      "sha256": "aabcd6725ef60bb5e6222d2fe4f449d01d70040b08569b1a32c5f617879ef129",
-      "origin": "outputs/Patchman-v1.5-Final/tests/layout.cpp"
+      "sha256": "16a6460113b2d05c8662d740ba1ac4a7e24a354a7a8233a4a81cb07c4d48b5e4",
+      "origin": "outputs/Patchman-v1.5.1/tests/layout.cpp"
     },
     {
       "path": ".gitignore",
@@ -476,12 +476,12 @@
     },
     {
       "path": "docs/BUILD.md",
-      "sha256": "676c6ab6853ab0c7d4fe67e66ad344b1612dd51d8e331e8ca69b5f4cecc80855",
+      "sha256": "49c1dc2f15c5cf80f6ee0118871cffdffaf78a2de3efaf6026aaef7a337c818f",
       "origin": "Maintained public source documentation and portable tools"
     },
     {
       "path": "README.md",
-      "sha256": "54d64a677c02668c5bed92593f17bd503ca43ff7c220144f65361d6de720ff4b",
+      "sha256": "87083ce1c062256f0d3b3b629026cbd8f5a43933df70ae60b49794838cff0ca6",
       "origin": "Maintained public source documentation and portable tools"
     },
     {
@@ -491,7 +491,7 @@
     },
     {
       "path": "tools/apply-player-patches.py",
-      "sha256": "89554214f00d3921b0fe55b663a425290c10b14019ac9c61ee91c255947bebb8",
+      "sha256": "b283d6b8d1e19b1dd5a082f7af582aad84f55277ddaf3f58e205c9d81a42c6f3",
       "origin": "Maintained public source documentation and portable tools"
     },
     {
@@ -501,28 +501,48 @@
     },
     {
       "path": "tools/check-source.py",
-      "sha256": "5b8f430becf4d3b2201060e3632c307818323cec3684c253043e4f8f933764e7",
+      "sha256": "d3adbd189db948837823bea32affa0d55b3ca80a0256d6f1afadb3bbdbc9b69d",
       "origin": "Maintained public source documentation and portable tools"
     },
     {
       "path": "tools/check-ui.sh",
-      "sha256": "c06723f5929c94f2a079d242ae246095389cc2fd7d1ea01ae6a08f863cbe5c62",
+      "sha256": "56c87b0dea3872cee710a4d74ded712da12c09e75e11c0c43a654dfdc34563bf",
       "origin": "Maintained public source documentation and portable tools"
     },
     {
       "path": "tests/ui/prepare-fixture.py",
-      "sha256": "7f202fa3caeb5faf058cca9573dcc5ec98312d4ff1339cea956c530b6c307236",
+      "sha256": "82bb9ce38f738cbac6297caaf47af52057a3c7303683855ed2108e3f662d8802",
       "origin": "Portable variant of the v1.5 real-player QML fixture; original firmware is supplied locally"
     },
     {
       "path": "tests/ui/layout.cpp",
-      "sha256": "aabcd6725ef60bb5e6222d2fe4f449d01d70040b08569b1a32c5f617879ef129",
-      "origin": "outputs/Patchman-v1.5-Final/tests/layout.cpp"
+      "sha256": "16a6460113b2d05c8662d740ba1ac4a7e24a354a7a8233a4a81cb07c4d48b5e4",
+      "origin": "outputs/Patchman-v1.5.1/tests/layout.cpp"
+    },
+    {
+      "path": "tests/reference/battery.cpp",
+      "sha256": "8e23c8b1e792e2b2e6ae27078687bf94c6031f583bbd973301c1ee43167b769a",
+      "origin": "outputs/Patchman-v1.5.1/tests/battery.cpp"
+    },
+    {
+      "path": "tests/reference/header.cpp",
+      "sha256": "7e604a860cdebf2c915f30ba4907f5790c425e81aedf415e5f4839db9d17f17a",
+      "origin": "outputs/Patchman-v1.5.1/tests/header.cpp"
+    },
+    {
+      "path": "tests/reference/prepare-header-fixture.py",
+      "sha256": "be700f77b3f86207aa197693b382a801d1fa2dff557873c7a21e80f330e52062",
+      "origin": "outputs/Patchman-v1.5.1/tests/prepare-header-fixture.py"
+    },
+    {
+      "path": "maintenance/test-battery.sh",
+      "sha256": "bacc27d9587f7ebdcb02228d1cc3a0939d6d9d06be36be5ee4ef4841911bd3d3",
+      "origin": "outputs/Patchman-v1.5.1/test-battery.sh"
     },
     {
       "path": "release-manifest.json",
-      "sha256": "3affef95ecdf786aa95e63900b4c26e6c6cdd9100ae71ee7414d66bbc8f2f6db",
-      "origin": "Component identities from public v1.5; no build-machine paths"
+      "sha256": "9720e98619d3afed2d98b479c82a027c1738a903face8d995c58614099ed035d",
+      "origin": "Component identities from public v1.5.1; no build-machine paths"
     }
   ],
   "limitations": [

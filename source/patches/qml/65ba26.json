@@ -1,6 +1,6 @@
 {
   "before_sha256": "82bff7e9b53d5ee8218f99fdac4171fa6b0818c6fff108b7291c80600a09a4de",
-  "after_sha256": "f5e89207467c7f1206873b3cfb4ef148862fb41972c0fc670579e98b06ff015b",
+  "after_sha256": "97405e4f098633a52907fe2c915a412ea6654c754992b35d33d5002ecb46bd48",
   "edits": [
     {
       "start": 0,
@@ -186,7 +186,7 @@
         "}\n",
         "SettingItemInfo {\n",
         "title: \"Installed patch\"\n",
-        "info: \"Patchman v1.5\"\n",
+        "info: \"Patchman v1.5.1\"\n",
         "onEdgeReleased: infoMain.onReleased()\n",
         "onEdgeCanceled: infoMain.onReleased()\n",
         "onPressedYPosition: infoMain.pressedYPosition(posY)\n",

@@ -97,6 +97,7 @@ require_space() {
 }
 
 known_player() {
+  hash_is "$1" "2678b8a55c696b72db7140dbaa834f91bfc675e691fa884562fe1635437562ea" && return 0
   hash_is "$1" "3e7bdb894cf9a1a8599f04651168fdcfe524c5c829113900b7b6e99f45413a2d" && return 0
   hash_is "$1" "5dac3d022189a3e940b0cc8fb7ecdb93baebf82c01dc35c86638a72c02397830" && return 0
   hash_is "$1" "9f4dc0e4b9d53c4847d63c2226bc72c30276c2373b6268424f83b0c1e5e5b6c9" && return 0

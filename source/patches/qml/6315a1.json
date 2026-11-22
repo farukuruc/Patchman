@@ -1,6 +1,6 @@
 {
   "before_sha256": "c95758e7fdb430434ff5d4f68fa4eb518c3a1721b2996106ed1b927bb994075e",
-  "after_sha256": "c95249eb25bbaf1f5b22b0df2c90bb56ce06d6fbf27a61c4f32c5a3cb704d699",
+  "after_sha256": "c25cbd9f22e3ea1af0643577c8910bc9b24efee37d06ce6bf3dfca096ab6ca6b",
   "edits": [
     {
       "start": 0,
@@ -81,7 +81,6 @@
         "}\n",
         "SCmnMarquee {\n",
         "id: labelTitle\n",
-        "continuous: base.compactMetadata\n",
         "width: p.labelTitleWidth\n",
         "height: p.labelTitleHeight\n",
         "anchors{top: scrubBar.bottom; topMargin: p.marginTitleTop;\n",

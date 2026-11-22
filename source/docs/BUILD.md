@@ -2,7 +2,7 @@
 
 ## What is verified
 
-The export is tied to the v1.5-stable release identified in
+The export is tied to the v1.5.1-stable release identified in
 `SOURCE-MAP.json`. The text overlays and installer/runtime scripts come from that
 released payload. All player resource edits listed in `patches/player.json` reproduce the released player
 byte-for-byte with the supported original player and the checked Python/zlib
@@ -79,10 +79,10 @@ used before packaging. It depends on firmware fixtures and earlier helper tests
 that are not part of this snapshot. Its presence is documentation of those
 checks, not a claim that the test runs independently in this repository today.
 
-## V1.5-specific sources and validation
+## V1.5.1 sources and validation
 
 `src/ui/topbar/` comes byte-for-byte from the released external QML/JS payloads,
-as do `SortingOptions.qml` and `ContinuousTitle.qml`. The custom shuffle/repeat
+as does `SortingOptions.qml`. `ContinuousTitle.qml` is an inactive legacy payload; the v1.5.1 player uses Sony's native marquee and never loads that loop. The custom shuffle/repeat
 controls are extracted from the released player resource slots. The Go to icon
 is a Patchman PNG represented as text/base64. The QML patch tool also restores
 the exact embedded icon. No separately installed SVG or image folder is needed.

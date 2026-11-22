@@ -1,6 +1,6 @@
 {
   "before_sha256": "749b8e92c6bb652242db7c1e18ae01e8d32cf348922a877c7d6b7d6f90efabc0",
-  "after_sha256": "1dd9b41146ced59c139abbada14aa83c3c92c0efed9f245e932cf769c1c758ba",
+  "after_sha256": "3765e7f37ba2dda749835d0e3489edaa61b224b8fcaafcbf6d58338a4c44b67a",
   "edits": [
     {
       "start": 0,
@@ -79,7 +79,6 @@
         "}\n",
         "SCmnMarquee {\n",
         "id: playTitleText\n",
-        "continuous: true\n",
         "width: p.playTitleWidth\n",
         "height: p.playTitleHeight\n",
         "anchors {\n",

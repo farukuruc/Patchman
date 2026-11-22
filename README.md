@@ -1,4 +1,4 @@
-# Patchman 1.5-stable
+# Patchman 1.5.1-stable
 
 **Small, useful features for the Sony NW-A55 with Walkman One 3.02.**
 
@@ -9,8 +9,8 @@ It keeps Sony's familiar interface.
 
 **One complete package, two installation paths:**
 
-- **Working Patchman v1.1:** install v1.5 directly with **Install**. Do not remove v1.1, return to stock or reset the player just for this update.
-- **First Patchman installation, or an old/unknown firmware setup:** complete the clean preparation: **stock Sony firmware > fresh official Walkman One 3.02 > Patchman v1.5**. Follow the clean steps even if an old installation already says Walkman One 3.02.
+- **Working Patchman v1.1 or v1.5:** install v1.5.1 directly with **Install**. Do not remove v1.1, return to stock or reset the player just for this update.
+- **First Patchman installation, or an old/unknown firmware setup:** complete the clean preparation: **stock Sony firmware > fresh official Walkman One 3.02 > Patchman v1.5.1**. Follow the clean steps even if an old installation already says Walkman One 3.02.
 
 Patchman does not install Walkman One. This is a full package, not a small update that needs an older Patchman ZIP.
 
@@ -19,7 +19,7 @@ The Artist setting is not supported by this feature.
 
 ## Contents
 
-- [What is new in v1.5](#what-is-new-in-v15)
+- [What is new in v1.5.1](#what-is-new-in-v151)
 - [Requirements](#requirements)
 - [Features](#features)
 - [Installation](#installation)
@@ -35,7 +35,6 @@ The Artist setting is not supported by this feature.
 - [Audio Path](#audio-path)
 - [Go to Album and Album Artist](#go-to-album-and-album-artist)
 - [Update or remove Patchman](#update-or-remove-patchman)
-- [Return to Patchman v1.1](#return-to-patchman-v11)
 - [Required clean setup](#required-clean-setup)
 - [If Walkman One is not accepted](#if-your-walkman-one-installation-is-not-accepted)
 - [Problems and solutions](#problems-and-solutions)
@@ -43,9 +42,21 @@ The Artist setting is not supported by this feature.
 - [Questions](#questions)
 - [Credits](#credits)
 
-## What is new in v1.5
+## What is new in v1.5.1
 
-V1.5 includes all v1.1 features. You do not need to install them separately.
+**Recommended update for v1.5 users.**
+
+- **Original Sony scrolling:** fixes short titles moving or disappearing after a long title on Now Playing and the mini-player by restoring Sony's original marquee.
+- **Clearer half-ring battery:** a white percentage beside a half-circle replaces the battery box and fill. Remaining charge is white; the used section is dim. Charging and FULL labels are kept.
+- **Version label:** Unit Information shows **Patchman v1.5.1**.
+
+Users with working v1.5 or v1.1 can install directly. After every update,
+disconnect USB and fully power the player off and on. There is no ReturnTo
+installer in this ZIP. Keep your previous working ZIP separately.
+
+### Features kept from v1.5
+
+V1.5.1 includes all v1.1 features. You do not need to install them separately.
 
 - **Sorting Options:** choose Newest first, Oldest first, A–Z or Z–A for the albums inside an artist.
 - **Cleaner shared top bar:** format information is on the left. Playback state, Bluetooth/NFC when available, volume and battery are grouped on the right.
@@ -54,10 +65,10 @@ V1.5 includes all v1.1 features. You do not need to install them separately.
 - **More space on Now Playing:** the album-name row is removed. The song title, artist, time labels and seek line have better spacing.
 - **Smaller visible playback controls:** the three main buttons are balanced on Now Playing and the mini-player. Their original touch areas stay the same.
 - **New icons:** flat shuffle and repeat icons, plus a new arrow icon for Go to. Shuffle and repeat are dim when off. Repeat One shows 1.
-- **Continuous long titles:** long song names move left in a smooth loop on Now Playing and the mini-player. Short names stay still.
-- **Version label:** Unit Information shows **Patchman v1.5**.
+- **Original Sony long-title scrolling:** long song names use the native pause and restart behavior on Now Playing and the mini-player. Short names stay centered.
+- **Version label:** Unit Information shows **Patchman v1.5.1**.
 
-The PEQ audio engine is unchanged from the working v1.1 release. V1.5 does not add Bluetooth PEQ verification or a new sound signature.
+The PEQ audio engine is unchanged from the working v1.1 release. V1.5.1 does not add Bluetooth PEQ verification or a new sound signature.
 
 ## Requirements
 
@@ -96,7 +107,7 @@ Patchman changes the player software. It is not an official Sony update.
 | Audio Path | Shows format, Direct Source, PEQ and connection information |
 | Go to | Opens the current album or album artist from Now Playing |
 | Help label | Shows Audio Path instead of Bookmark List in View Help |
-| Version label | Shows Patchman v1.5 in Unit Information |
+| Version label | Shows Patchman v1.5.1 in Unit Information |
 
 Bookmark List is replaced by Audio Path. Bookmark actions are removed from the
 affected menus. **Add to Playlist** remains available.
@@ -111,18 +122,18 @@ That menu no longer offers the spectrum analyzer or level meters.
 | Your player now | What to do |
 | --- | --- |
 | Patchman v1.1 works normally | Follow **Update from working v1.1** below. Use Install directly. |
-| A working v1.5 preview from this project | Use the same direct Install steps. |
+| A working v1.5.1 preview from this project | Use the same direct Install steps. |
 | No Patchman, only stock firmware or an older/unknown Walkman One setup | Follow **Required clean setup**, then install the patch. |
 | Unsupported player version or unknown modified files | Keep the log and follow the clean setup. Do not bypass checks. |
 
-### Update from working v1.1
+### Update from working v1.1 or v1.5
 
 1. Back up `PEQ`, `ARTIST-PHOTOS`, `CFW` and any other important files to your PC. Keep your working v1.1 ZIP too.
-2. Download this v1.5 `Patchman_NW-A55.zip` and extract the **whole ZIP to a new folder**. Do not mix its files with v1.1 or a test package.
+2. Download this v1.5.1 `Patchman_NW-A55.zip` and extract the **whole ZIP to a new folder**. Do not mix its files with v1.1 or a test package.
 3. Keep the microSD card inserted if it contains your library. Connect the player by USB.
-4. Run **Install/FirmwareUpdateTool.exe** from the v1.5 folder and follow the instructions.
+4. Run **Install/FirmwareUpdateTool.exe** from the v1.5.1 folder and follow the instructions.
 5. Wait until the update is complete. Disconnect USB, fully turn the player off, and start it again without USB.
-6. Open Unit Information and check **Patchman v1.5**. Check playback, your PEQ selection and the new Sorting Options.
+6. Open Unit Information and check **Patchman v1.5.1**. Check playback, your PEQ selection and the new Sorting Options.
 
 **Do not run Remove first. No stock return, Walkman One reinstall or factory reset is needed for a working v1.1 update.**
 
@@ -172,15 +183,11 @@ Patchman_NW-A55/
   Remove/
     FirmwareUpdateTool.exe
     Data/
-  ReturnToV1.1/
-    FirmwareUpdateTool.exe
-    Data/
   README.md
   SHA256SUMS.txt
   manifest.json
 ```
 
-Use **Install** to add or update Patchman. Use **Remove** only when you want to remove it. Use **ReturnToV1.1** to go back to the older Patchman release if v1.5 causes a problem.
 The Data folders contain files needed by the installers.
 
 ### Install the patch
@@ -233,9 +240,9 @@ After starting without USB, check these items:
 - Open Basic Settings: **Sorting Options** and **Cassette Screen** should be available near Device Settings.
 - Open the old Bookmark List page: it should now show **Audio Path**.
 - Open View Help from Now Playing: its right-hand label should say **Audio Path**.
-- Open Unit Information: it should show **Patchman v1.5**.
+- Open Unit Information: it should show **Patchman v1.5.1**.
 - Open an album artist: years should appear below album names. Newest first is the default; another saved order may be active. The All row is hidden in this list.
-- Check the new top bar, continuous long-title scrolling and mini-player controls.
+- Check the new top bar, original Sony long-title scrolling and mini-player controls.
 - If you added an artist photo, check it in the Artist list. An artist without
   a photo should keep the original Sony album artwork.
 
@@ -264,7 +271,7 @@ The top bar is shared across the player screens. Format information stays on the
 
 **The old strip of volume marks is removed, but the top-bar touch area still works. Tap the top bar to open Sony's volume control panel, including the area where the old strip was.** Removing the visible marks does not remove the volume shortcut. The small playback/seek status moved from below the format text into the right group. Play, pause, next/previous and fast-seek notifications use Sony's reported state.
 
-On Standard Now Playing, only the **song title and artist** remain below the timeline. The separate album-name row is removed. Use Go to > Album to open the album. A long song title flows left, with a blank gap before the next copy. The mini-player uses the same loop. Short titles stay centered and still. The new motion stops while the title is hidden or the screen is off. If the optional title component cannot load, Sony's original scrolling remains available.
+On Standard Now Playing, only the **song title and artist** remain below the timeline. The separate album-name row is removed. Use Go to > Album to open the album. Long song titles use the original Sony scrolling on Now Playing and the mini-player, including the original pause and restart behavior. Short titles stay centered. The continuous loop from v1.5.1 is no longer active.
 
 The three main playback buttons have smaller visible images in both layouts. Their touch areas and click/hold actions remain native. Shuffle is dim when off and white when on. Repeat keeps Off, One and All; One shows a small 1.
 
@@ -274,7 +281,7 @@ The percentage comes from the player's reported battery value. It is **not a new
 
 The number can rise or fall quickly when USB is connected or removed. For example, a charging value near 99 may return to a lower value after unplugging. Patchman does not replace this with a made-up smoother number.
 
-The battery keeps its white fill and charging animation. A lightning mark means charging. **FULL** appears only when the system reports full charge. Battery Care does not force the number to 90 or 100. Sony's charge control, hardware charging LED and native low-battery warnings are not changed.
+The battery box and white fill are replaced by a half-circle beside the white percentage. The remaining level is white; the used part is dim. As the level falls, the upper part becomes dim first and the lower part stays white. The percentage always stays white. There is no animated fill. A lightning mark means charging. **FULL** appears only when the system reports full charge. Battery Care does not force the number to 90 or 100. Sony's charge control, hardware charging LED and native low-battery warnings are not changed.
 
 ## Sorting Options
 
@@ -476,7 +483,7 @@ playback mode works in the same way.
 
 ## Cassette Screen
 
-Open **Basic Settings > Cassette Screen**. In v1.5 it is below **Sorting Options**, near **Device Settings**.
+Open **Basic Settings > Cassette Screen**. In v1.5.1 it is below **Sorting Options**, near **Device Settings**.
 
 Turn it on to use the purple Sony UCX cassette view. Turn it off to keep the
 normal Sony view during HOLD.
@@ -559,7 +566,7 @@ The track artist and album artist can be different. For example, a compilation
 may use **Various Artists** as its album artist. In that case, Album Artist
 opens **Various Artists**, not the individual performer.
 
-The **Artist** display mode is not supported by Go to in v1.5. Do not switch to that mode
+The **Artist** display mode is not supported by Go to in v1.5.1. Do not switch to that mode
 and expect the Album Artist shortcut to change its behaviour.
 
 Go to is implemented for the **English Standard Now Playing menu**. Other
@@ -570,8 +577,8 @@ does not match, the feature stops instead of guessing a destination.
 
 ### Update an existing installation
 
-For working v1.1 or a supported project preview, use the direct Install steps in
-[Update from working v1.1](#update-from-working-v11). Do not remove Patchman first.
+For working v1.1, v1.5 or a supported project preview, use the direct Install steps in
+[Update from working v1.1 or v1.5](#update-from-working-v11-or-v15). Do not remove Patchman first.
 
 The same ZIP is also a complete first installer. No older Patchman package is
 needed. New users follow [Required clean setup](#required-clean-setup) first.
@@ -582,7 +589,7 @@ and install log. Do not bypass compatibility or space checks.
 ### Remove Patchman
 
 1. Connect the player by USB.
-2. Open the **Remove** folder from this v1.5 package.
+2. Open the **Remove** folder from this v1.5.1 package.
 3. Run `FirmwareUpdateTool.exe` and follow its instructions.
 4. When finished, disconnect USB and fully turn the player off/on.
 
@@ -591,38 +598,7 @@ player interface**. It does **not** return to stock Sony firmware.
 
 Music, PEQ profile files and the saved cassette preference are kept.
 Use the combined package's remover, not an old remover for only one feature.
-To keep Patchman but return to v1.1, use **ReturnToV1.1** below instead of Remove.
 
-## Return to Patchman v1.1
-
-If v1.5 causes a problem, use the included **ReturnToV1.1** folder. You do not
-need to install v1.1 first or find an old ZIP.
-
-1. Back up important files to your PC.
-2. Connect the Walkman by USB. This can also work when the player screen is
-   blank, as long as Windows can still see the player.
-3. From this v1.5 ZIP, run **ReturnToV1.1/FirmwareUpdateTool.exe**.
-4. Follow the instructions and wait for the update to finish.
-5. Disconnect USB, fully power the player off, then start it without USB.
-6. Check Unit Information: it should show **Patchman v1.1**.
-
-**Do not run Remove first.** The return tool restores the complete public v1.1
-feature files with an installer that also accepts the supported v1.5 player.
-It keeps Walkman One. It does not install stock Sony firmware.
-
-The v1.1 interface and newest-first album order return. The v1.5 Sorting Options,
-new top bar, battery percentage, new icons and continuous song-title loop are no
-longer active. Music, PEQ files, artist photos and supported preferences are kept.
-An existing valid PEQ playback check is kept too.
-
-You can install v1.5 again later with **Install/FirmwareUpdateTool.exe**. No clean
-reset is needed when the returned v1.1 setup works normally.
-
-| Tool | Result |
-| --- | --- |
-| Install | Install or update to Patchman v1.5 |
-| ReturnToV1.1 | Restore Patchman v1.1 and keep Walkman One |
-| Remove | Remove Patchman and keep Walkman One's original player |
 
 ## If your Walkman One installation is not accepted
 
@@ -646,7 +622,6 @@ If the error remains after these steps, stop and share the latest install log, i
 | Cassette Screen does not appear | Enable it in Basic Settings, activate HOLD, and check the normal player view. |
 | Album or Remaining time is not immediate | Allow time for track lengths to load. Check again after normal playback starts. |
 | Albums stay alphabetical or years are missing | Check Sorting Options. Keep the music SD card inserted, let Sony finish its library update, then fully restart without USB. Check the release-date/year tags and `sony_album-year-cache.log`. |
-| The player screen is blank after the update | If Windows still sees the player, use the ReturnToV1.1 steps above. Keep the install and startup logs. |
 | The installer reports low space | Keep the exact error and install log. Free internal music storage if needed. Do not delete unknown system files. |
 | The installer reports unknown firmware or files | Confirm the model and Walkman One version. Another modification may be present. Do not bypass the check. |
 
@@ -710,7 +685,7 @@ using a local lossless library and wired headphones.
 | Package checks | The release build runs resource, QML layout, fresh-install, v1.1 update, preference, permissions, removal, recovery and UPG/ZIP checks. The build must pass before it produces the final ZIP. |
 | Album years, Sorting Options and hidden All | Confirmed on the author's device |
 | New top bar, percentage battery, full/mini layout and new icons | Reported working by the author |
-| Continuous long song titles | Reported working by the author; included in host layout/lifecycle checks |
+| v1.5.1 original Sony title scrolling and half-ring battery | Host checks passed; installation and updated UI confirmed by the author on NW-A55 |
 | Thin indicator and album scroll boundaries | Confirmed on the author's device |
 | Internal artist photos, loading without album-cover flash and error fallback | Confirmed on the author's device |
 | Clean-install foundation used by v1.1 | Reported working after stock return, factory reset and fresh Walkman One on the author's NW-A55 with Neutral tuning |
@@ -718,7 +693,7 @@ using a local lossless library and wired headphones.
 | MP3, AAC, DSD and every other playback mode | Not fully tested by this project |
 | Other players and firmware versions | Not verified |
 
-The final v1.5 first-install route has filesystem tests in the release build. It has not yet had a separate clean installation on a physical device. The author tested the new UI through updates on a working player.
+The final v1.5.1 first-install route has filesystem tests in the release build. The author confirmed the v1.5.1 installation and updated UI on the NW-A55 through a direct update. It has not yet had a separate clean installation on a physical device. The author tested the new UI through updates on a working player.
 
 An untested format is not automatically unsupported. It means this project does
 not yet have enough testing to promise correct behaviour for it.
@@ -773,17 +748,16 @@ MrWalkman firmware release.
 
 ## Release package
 
-This is one complete **v1.5-stable** package for both supported updates and first
+This is one complete **v1.5.1-stable** package for both supported updates and first
 installations. The installer includes all feature files and checks them before
 activation. It uses the confirmed clean-install foundation from v1.1, including
 readable UI folder permissions and USB-aware first PEQ playback verification.
 The PEQ audio engine and profile parser are unchanged. The abandoned security
 test is not included.
 
-The public ZIP contains **Install**, **Remove**, **ReturnToV1.1**, this README,
-component information and checksums. The return tool restores the complete v1.1
-payload. There are no beta-named folders in the public ZIP. Other maintainer
-recovery packages are kept separately.
+The public ZIP contains **Install**, **Remove**, this README, component
+information and checksums. No ReturnTo installer is included. Keep your previous
+working ZIP as a separate backup.
 
 `SHA256SUMS.txt` checks the files inside the ZIP. The separate `.zip.sha256` file
 checks the ZIP download. `manifest.json` records the release and component hashes.
@@ -791,7 +765,7 @@ checks the ZIP download. `manifest.json` records the release and component hashe
 For maintainers, the source workspace build command is:
 
 ```sh
-bash outputs/Patchman-v1.5-Final/build.sh
+bash outputs/Patchman-v1.5.1/build.sh
 ```
 
 Users do not need WSL, a compiler or the source tree to run the Windows installer.

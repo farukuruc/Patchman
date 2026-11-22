@@ -75,7 +75,7 @@ int main(int argc,char**argv){
  check(item(legacy,"scrub")->property("labelToTrackGap").toInt()==4,"other timeline users keep Sony gap");
  QVariantMap data={{"play_title","A very long song title remains on the original Sony marquee"},{"artist_name","Billy Idol"},{"album_name","Rebel Yell"},{"is_high_resolution",true},{"lyrics_status",2}};
  player->setProperty("meta_data",data);events();
- check(title->property("loopText").toString()==data["play_title"].toString(),"title metadata binding retained");
+ check(item(title,"native_centerText")->property("text").toString()==data["play_title"].toString(),"title metadata binding retained");
  check(artist->width()==372&&item(player,"lyricsImage")->isVisible()&&item(player,"hiResIcon")->isVisible(),"lyrics and HiRes move beside artist without overlap");
  for(const char*name:{"lyricsImage","hiResIcon"}){
   auto*i=item(player,name);check(i->y()==artist->y()&&i->x()>=0&&i->x()+i->width()<=480,"native badges remain inside panel");
@@ -151,34 +151,32 @@ int main(int argc,char**argv){
  }
  controlProps["repeatModeState"]=3;controls->setProperty("properties",controlProps);events();
  check(repeat->property("load_image_source").toString().isEmpty()&&repeat->property("pressed_image_source").toString().isEmpty(),"unsupported repeat state stays empty");
- auto*failure=item(root,"fallbackTitle");
- check(!failure->property("useLoop").toBool()&&!failure->property("loopText").toString().isEmpty(),"missing optional file preserves the Sony fallback and metadata");
- check(!artist->property("continuous").toBool()&&!item(legacy,"labelTitle")->property("continuous").toBool(),"artist and other playback layouts do not opt in");
+
  meta->setProperty("isTitleMarquee",true);events();
- auto*loop=item(title,"continuousTitle");
- check(loop->property("overflow").toBool()&&loop->property("motionRunning").toBool(),"visible long full-player title starts continuous motion");
- auto*first=item(loop,"loopFirst");auto*second=item(loop,"loopSecond");
- auto*motion=loop->findChild<QObject*>("loopMotion");check(motion,"render-thread animator exists");
- double distance=loop->property("distance").toDouble();
- check(qAbs(second->x()-distance)<0.01&&qAbs(distance-first->implicitWidth()-56)<0.01,"second copy follows the full text with a fixed gap");
- check(qAbs(motion->property("to").toDouble()+distance)<0.01&&motion->property("loops").toInt()==-1,"one-copy linear loop resets at a visually identical position");
- check(qAbs(motion->property("duration").toInt()-distance/32*1000)<=1,"constant 32-pixel-per-second travel");
- auto display=[&](const char*value){QFile f(path+"/brightness.txt");check(f.open(QIODevice::WriteOnly|QIODevice::Truncate),"brightness fixture write");f.write(value);f.close();check(QMetaObject::invokeMethod(loop,"readDisplay"),"read-only display probe");events();};
- display("0\n");check(!loop->property("screenAwake").toBool()&&!loop->property("motionRunning").toBool(),"screen off stops animation");
- display("17\n");check(loop->property("screenAwake").toBool()&&loop->property("motionRunning").toBool(),"screen wake resumes animation");
- display("invalid\n");check(!loop->property("motionRunning").toBool(),"unknown brightness does not animate");display("17\n");
- data["play_title"]="Short title";player->setProperty("meta_data",data);events();
- check(!loop->property("overflow").toBool()&&!loop->property("motionRunning").toBool()&&!second->isVisible(),"short track names stay still with no duplicate");
- data["play_title"]="Another very long title for a seamless loop after changing tracks without affecting the artist";player->setProperty("meta_data",data);events();
- check(first->property("text").toString()==data["play_title"].toString()&&loop->property("motionRunning").toBool(),"track change replaces both copies and restarts motion");
- check(artist->y()==125&&artist->property("loopText").toString()=="Billy Idol","artist position and metadata stay unchanged");
- meta->setProperty("isTitleMarquee",false);events();check(!loop->property("motionRunning").toBool(),"native marquee disable stops the loop");
- title->setVisible(false);events();check(!find(title,"continuousTitle"),"hidden title releases the optional component and its display poll");
- controlProps["dispMode"]=0;controlProps["playTitle"]=data["play_title"];controls->setProperty("properties",controlProps);events();
- auto*mini=item(controls,"miniTitle");auto*miniLoop=item(mini,"continuousTitle");
- check(mini->property("continuous").toBool()&&miniLoop->property("motionRunning").toBool(),"mini-player uses the same continuous loop");
- check(qAbs(miniLoop->property("pixelsPerSecond").toDouble()-32)<0.01,"full and mini have the same speed");
- controlProps["dispMode"]=1;controls->setProperty("properties",controlProps);events();
- check(!find(mini,"continuousTitle"),"leaving mini mode releases its animation");
- puts("PASS continuous title: actual Sony layout and opt-in resource, full/mini two-copy loop, native fallback, short titles, track changes, screen-off/wake/unknown, hidden lifecycle, geometry and native controls");
+ check(!find(title,"continuousTitle"),"Now Playing does not load the continuous loop");
+ auto checkShort=[&](QQuickItem*host,const QString&expected){
+  auto*center=item(host,"native_centerText");
+  check(center->isVisible()&&center->property("text").toString()==expected,"short title visible in original Sony centered label");
+  check(!host->findChild<QObject*>("native_marqueeScroll")->property("running").toBool(),"original scrolling stops for short title");
+  check(!host->findChild<QObject*>("native_fixingTime")->property("running").toBool(),"original delay stops for short title");
+ };
+ auto settle=[&](int ms){for(int i=0;i<ms/10;++i){QCoreApplication::processEvents();QThread::msleep(10);}};
+ for(int cycle=0;cycle<2;++cycle){
+  data["play_title"]="A very long song title for the original Sony scrolling behavior before a short song follows";
+  player->setProperty("meta_data",data);events();settle(2600);
+  check(title->findChild<QObject*>("native_marqueeScroll")->property("running").toBool(),"native full-player marquee starts after its original delay");
+  data["play_title"]="Next";player->setProperty("meta_data",data);events();checkShort(title,"Next");
+  settle(300);checkShort(title,"Next");
+ }
+ controlProps["dispMode"]=0;controls->setProperty("properties",controlProps);events();
+ auto*mini=item(controls,"miniTitle");
+ check(!find(mini,"continuousTitle"),"mini-player does not load continuous animation");
+ for(int cycle=0;cycle<2;++cycle){
+  controlProps["playTitle"]="A very long song title for the original mini-player scrolling before a short song follows";
+  controls->setProperty("properties",controlProps);events();settle(2600);
+  check(mini->findChild<QObject*>("native_marqueeScroll")->property("running").toBool(),"native mini-player marquee starts after its original delay");
+  controlProps["playTitle"]="Next";controls->setProperty("properties",controlProps);events();checkShort(mini,"Next");
+  settle(300);checkShort(mini,"Next");
+ }
+ puts("PASS native title: original Sony marquee resources, full/mini long-to-short transitions, unchanged geometry and native controls");
 }

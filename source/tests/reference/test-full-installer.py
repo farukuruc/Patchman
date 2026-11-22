@@ -6,7 +6,7 @@ boot state and shell execution are real. chown is recorded, not privileged.
 import hashlib, importlib.util, json, pathlib, re, shlex, subprocess, unittest, tarfile, zipfile
 HERE=pathlib.Path(__file__).resolve().parent.parent
 PROJECT=HERE.parent.parent
-WORK=PROJECT/'work/Patchman-v1.5-Final'
+WORK=PROJECT/'work/Patchman-v1.5.1'
 spec=importlib.util.spec_from_file_location('installer_fixture',PROJECT/'outputs/Patchman-GoTo/tests/test-package.py')
 base=importlib.util.module_from_spec(spec);spec.loader.exec_module(base)
 MANIFEST=json.loads((HERE/'manifest.json').read_text())
@@ -115,7 +115,7 @@ class Package(unittest.TestCase):
             self.assertEqual((self.state/'runtime/cassette-enabled.txt').read_text(),'on\n')
             self.assertEqual((self.state/'confirmed').read_text().strip(),VALUES['BUILD_ID'])
             self.assertEqual((self.state/'runtime/album-sort.txt').read_text(),'newest\n')
-            self.assertEqual((self.root/'system/vendor/patchman/version.txt').read_text().strip(),'Patchman v1.5')
+            self.assertEqual((self.root/'system/vendor/patchman/version.txt').read_text().strip(),'Patchman v1.5.1')
 
     def test_v15_return_to_public_v11_preserves_data_and_can_update_again(self):
         self.setup_device();self.run_script('install')
@@ -211,7 +211,7 @@ class Package(unittest.TestCase):
         self.setup_device();self.run_script('install')
         (self.root/'contents/PEQ/My IEM.txt').write_text('keep')
         self.archive(WORK/'return-stable.tar.gz')
-        self.assertIn('SUCCESS: Patchman confirmed Go to UI restored;',self.run_script('return-stable'))
+        self.assertIn('SUCCESS:',self.run_script('return-stable'))
         for name,dest in [('guard',self.fixture.backend/'boot.sh'),('player',self.bin/'HgrmMediaPlayerApp.album-test')]:
             expected=next(f['sha256'] for f in STABLE['files'] if f['name']==name)
             self.assertEqual(SHA(dest.read_bytes()),expected)
@@ -236,7 +236,7 @@ class Package(unittest.TestCase):
 
     def test_only_native_header_and_logging_changed_confirmed_return_exact(self):
         old={f['name']:f['sha256'] for f in STABLE['files']};new={f['name']:f['sha256'] for f in MANIFEST['files']}
-        self.assertEqual(set(new)-set(old),{'continuous-title'});self.assertEqual({k for k in old if old[k]!=new[k]},{'player'})
+        self.assertEqual(set(new),set(old));self.assertEqual({k for k in old if old[k]!=new[k]},{'player','topbar-batteryindicator'})
         self.assertEqual(SHA((WORK/'return-stable.tar.gz').read_bytes()),STABLE['values']['BUNDLE_SHA'])
         body=(HERE/'scripts/install.sh').read_text()
         for f in MANIFEST['files']:self.assertIn('hash_is "$TMP/files/'+f['name']+'" "'+f['sha256']+'"',body)

@@ -106,25 +106,10 @@ text=harness.read_text(encoding='utf-8').rstrip()
 assert text.endswith('}')
 harness.write_text(text[:-1]+'Image { objectName:"gotoIcon"; visible:false; source:"'+icon+'" }\n}\n',encoding='utf-8')
 
-# Replace the old marquee stub with the actual opt-in Sony resource.
+# Exercise the original Sony marquee resource, with only test object names.
 off=0x61f1db;n=int.from_bytes(binary[off:off+4],'big')
-marquee=binary[off+4:off+4+n].decode('utf-8')
-marquee=marquee.replace('"qrc:/parts"','"."').replace('file:///system/vendor/sony-peq/ui/ContinuousTitle.qml',(dest/'ContinuousTitle.qml').as_uri())
+marquee=binary[off+4:off+4+n].decode('utf-8').replace('"qrc:/parts"','"."')
+for name in ('labelTitle','centerText','periodlabelTitle','marqueeScroll','fixingTime'):
+    marquee=marquee.replace('id: '+name,'id: '+name+'\nobjectName: "native_'+name+'"',1)
 (dest/'parts/SCmnMarquee.qml').write_text(marquee,encoding='utf-8')
 (dest/'parts/SCmnLabel.qml').write_text('import QtQuick 2.3\nText {}\n',encoding='utf-8')
-loop=(HERE/'src/ui/ContinuousTitle.qml').read_text(encoding='utf-8').replace('"qrc:/parts"','"./parts"').replace('file:///sys/class/leds/lcd-backlight/brightness',(dest/'brightness.txt').as_uri())
-(dest/'ContinuousTitle.qml').write_text(loop,encoding='utf-8')
-(dest/'brightness.txt').write_text('17\n',encoding='utf-8')
-# A missing optional file must leave the original Sony text available.
-failure=marquee.replace((dest/'ContinuousTitle.qml').as_uri(),(dest/'missing-title.qml').as_uri())
-(dest/'parts/FailureMarquee.qml').write_text(failure,encoding='utf-8')
-harness=dest/'Harness.qml';text=harness.read_text(encoding='utf-8').rstrip()
-text=text.replace('import QtQuick 2.3','import QtQuick 2.3\nimport "./parts" as RecoveryTest',1)
-text=text[:-1]+'''RecoveryTest.FailureMarquee {
-objectName:"fallbackTitle"; x:800; width:200; height:43
-continuous:true; isUseMarquee:true
-Component.onCompleted: setMainText("This long title keeps the native Sony fallback")
-}
-}
-'''
-harness.write_text(text,encoding='utf-8')

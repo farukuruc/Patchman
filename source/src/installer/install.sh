@@ -97,6 +97,7 @@ require_space() {
 }
 
 known_player() {
+  hash_is "$1" "2678b8a55c696b72db7140dbaa834f91bfc675e691fa884562fe1635437562ea" && return 0
   hash_is "$1" "3e7bdb894cf9a1a8599f04651168fdcfe524c5c829113900b7b6e99f45413a2d" && return 0
   hash_is "$1" "5dac3d022189a3e940b0cc8fb7ecdb93baebf82c01dc35c86638a72c02397830" && return 0
   hash_is "$1" "9f4dc0e4b9d53c4847d63c2226bc72c30276c2373b6268424f83b0c1e5e5b6c9" && return 0
@@ -130,7 +131,7 @@ known_launcher() {
   hash_is "$1" "16776766acad8995b37f73327543ec9c0d8d9b6ec35742a4e16ee096f0a86659" || hash_is "$1" "2d308c288843ae786a3a245bdcd8a0b7907397b68447ee8be8ea1fe4116590a0" || hash_is "$1" "2f19442a4ab9558ca82c7169f0b44ef538fc432b74f470b04c94fd22513e1b14" || hash_is "$1" "4d5d9965367b417cbbd8cd3c2a620b06e7b3d614a5b6295155a9450f7ac339a6" || hash_is "$1" "5a0206611fae40bda481dacd0db0f32e8a5102ef291547987444292e00b3f951" || hash_is "$1" "63f63ea97b314c0c069fc778c13d2638c6ebae290590ee93091e6e2355c03c42" || hash_is "$1" "65fa43be9aa54fe467ea00be3c988999f3325f32b9b8b93ce98eb8f7a8fc09be" || hash_is "$1" "6ca0bfc02828b9b334637fc1b5d11c8d0b74bd144cd5fd71b671e655a3aa5342" || hash_is "$1" "718403b146ecd5295d1a642a74d763a2a9f66b6336980b3bd27fb89036fd58dc" || hash_is "$1" "73cf038b29b145a91e331ec1e8acdf6a332e0a889ccb96ca617dc1c2b22044e8" || hash_is "$1" "780dd41be79ef581a21d289e19e1778c4ffe592d70fce5e3acd3af03f4a41d02" || hash_is "$1" "7c5b47b678112e6030a50414e58dc774a505bf6d99983c38bbc3ca7db0e0e635" || hash_is "$1" "7e9e4d9ac22a0998e40e7443acb443444e940efb5ea7499dd68e27c17769daac" || hash_is "$1" "abcddb42a6b20ea5e3734b4c8a84834e2b34c5edc875e56f7c38a54ab0157a62" || hash_is "$1" "ad6f7f2af975da1d5b723bffdd2f42ef94053550176cbeeea41b98c8f1dceb87" || hash_is "$1" "b56b7f7a4d8ba8b450711f8b71fdc19890af2e7fafea467364c3c713def41928" || hash_is "$1" "bd1545aeae789141afa18772557a59c6caf0db41d33e411104f78e6c6bbaf8e6" || hash_is "$1" "c06a997ce0d400732152fe79eaad8bc9b7a366a98bb5d7bc53c668c56fc97720" || hash_is "$1" "c53c173613790e602fe8f4bba0f62378726dd12806de4ab7b0edd368a3cffa76" || hash_is "$1" "d746ebe52fd334b3399a9a41451e8c54ae7632295dac40f802a5a69345911490" || hash_is "$1" "e7659aa310adef4fc0485a2bd0b4f40aa31417b9f0ed00bdd94f1b363a6ad3af"
 }
 exec >>/contents/Patchman-install.log 2>&1
-echo "Patchman v1.5-stable full installer"
+echo "Patchman v1.5.1 full installer"
 PM=/system/vendor/patchman
 CFG=$BIN/HgrmMediaPlayerApp.appcfg
 TMP=/data/patchman-install-stage
@@ -192,10 +193,10 @@ require_space /contents 10534
 ARCHIVE_READY=1
 UPG="/contents/$(nvpstr ufn).UPG"
 fwpchk -f "$UPG" -c -2 "$ARCHIVE_STAGE/bundle.raw" || fail "Extract bundle"
-BUNDLE_HASH="$("$BB" head -c 9672284 "$ARCHIVE_STAGE/bundle.raw" | "$BB" sha256sum | "$BB" cut -d' ' -f1)"
-[ "$BUNDLE_HASH" = '603f34912cba198991b3a7cf810ea554c685ace786a38c959d6f88b68d7db9f9' ] || fail "Bundle checksum"
+BUNDLE_HASH="$("$BB" head -c 9672054 "$ARCHIVE_STAGE/bundle.raw" | "$BB" sha256sum | "$BB" cut -d' ' -f1)"
+[ "$BUNDLE_HASH" = 'b489cac41aa27ebf53235b64b89069920a3a9bad5a6cdf2c0a8e6478293761c3' ] || fail "Bundle checksum"
 STREAM_OK=0
-if "$BB" head -c 9672284 "$ARCHIVE_STAGE/bundle.raw" 2>/dev/null | "$BB" tar -xzOf - queue-cache > "$ARCHIVE_STAGE/probe" 2>/dev/null; then
+if "$BB" head -c 9672054 "$ARCHIVE_STAGE/bundle.raw" 2>/dev/null | "$BB" tar -xzOf - queue-cache > "$ARCHIVE_STAGE/probe" 2>/dev/null; then
     hash_is "$ARCHIVE_STAGE/probe" '651027e7d13f1d5752a21c9077633b406ff1fc250a5efa6fbb616996f3f82ea3' && STREAM_OK=1
 fi
 "$BB" rm -f "$ARCHIVE_STAGE/probe"
@@ -215,14 +216,14 @@ if [ "$MODE" = data ]; then "$BB" chmod 700 "$TMP" || fail "Staging permissions"
 "$BB" mkdir -p "$TMP/files" || fail "Bundle directory"
 if [ "$MODE" = contents ]; then
     for member in shim profile ui-helper guard panel queue-cache log-policy goto-navigator goto-logic goto-native goto-status goto-target audio-path audio-path-labels cassette preferences tape reels wrapper boot original-daemon original-boot gate year-shim year-builder year-view year-exec year-js year-status photo-view photo-component player launcher sort-panel topbar-batteryindicator topbar-batterystate topbar-headerlayout topbar-nativebatteryicon topbar-nativeglyph topbar-playbackglyph topbar-rightcluster topbar-speakerglyph continuous-title; do
-        "$BB" head -c 9672284 "$ARCHIVE_STAGE/bundle.raw" | "$BB" tar -xzOf - "$member" > "$TMP/files/$member" || fail "Extract member: $member"
+        "$BB" head -c 9672054 "$ARCHIVE_STAGE/bundle.raw" | "$BB" tar -xzOf - "$member" > "$TMP/files/$member" || fail "Extract member: $member"
     done
 else
-    "$BB" head -c 9672284 "$ARCHIVE_STAGE/bundle.raw" | "$BB" tar -xzf - -C "$TMP/files" || fail "Unpack bundle"
+    "$BB" head -c 9672054 "$ARCHIVE_STAGE/bundle.raw" | "$BB" tar -xzf - -C "$TMP/files" || fail "Unpack bundle"
 fi
 "$BB" rm -f "$ARCHIVE_STAGE/bundle.raw" || fail "Release archive"
 hash_is "$TMP/files/sort-panel" "a942290769a13f91abc7983552f25b3e761569cccb8794e0c54e2f9170a95494" || fail "Payload checksum: sort-panel"
-hash_is "$TMP/files/topbar-batteryindicator" "385aa1c1e67dcd81fc1129865baf1fd180675c29b4d4ed6d0509c687732dca76" || fail "Payload checksum: topbar-batteryindicator"
+hash_is "$TMP/files/topbar-batteryindicator" "233112513ea117e2946ece5088d6f44c6b92c72d70bbe5670aa9c8ab41eee939" || fail "Payload checksum: topbar-batteryindicator"
 hash_is "$TMP/files/topbar-batterystate" "35598ff81c59c565678e1ee09b8c55710e9283e2604a224694ec2bb9bee73cd1" || fail "Payload checksum: topbar-batterystate"
 hash_is "$TMP/files/topbar-headerlayout" "a2dfdd2bd754335c66ba2b0cd49040b46b2fd9734809b6a6ae50d220cfa6c8af" || fail "Payload checksum: topbar-headerlayout"
 hash_is "$TMP/files/topbar-nativebatteryicon" "9c8e6a71c9532c2be705340ab69c87507f677bbbc19849fe9c5e636e1932eaf6" || fail "Payload checksum: topbar-nativebatteryicon"
@@ -254,7 +255,7 @@ hash_is "$TMP/files/original-daemon" "fe4adf07775dc447c18a22a63fb0b59168cce9159b
 hash_is "$TMP/files/original-boot" "7675f7d234b0abadf2909f2e9a274d51fe1d02620d776c4ac6d2ce865ecac358" || fail "Payload checksum: original-boot"
 hash_is "$TMP/files/gate" "376310df505b7c2089d915607da45fabd871dea10972915bbc9d3d50846a40cd" || fail "Payload checksum: gate"
 hash_is "$TMP/files/continuous-title" "f9fa5582fbdc7ca0a0069f356b714a68b667571e861f6496f5ba15898e1de64f" || fail "Payload checksum: continuous-title"
-hash_is "$TMP/files/player" "c7667d5ce808fc5954c5a28b7f04f35f11fd6f1ad49d2c2be274625141c30e34" || fail "Payload checksum: player"
+hash_is "$TMP/files/player" "2678b8a55c696b72db7140dbaa834f91bfc675e691fa884562fe1635437562ea" || fail "Payload checksum: player"
 hash_is "$TMP/files/launcher" "1d61751a34427fdb6ad6e362be67aed8cf62c0b945645496aa18729ed849ecc1" || fail "Payload checksum: launcher"
 
 hash_is "$TMP/files/year-shim" "c494f7a5ab5ee3694de0e3d4ad128dafce9a0f7da6c2b7b3eb8559c6111bd6d3" || fail "Payload checksum: year-shim"
@@ -368,7 +369,7 @@ put "$TMP/files/boot" "$BOOT" 755 || fail "Recovery hook activation"
 put "$TMP/files/wrapper" "$BIN/hagodaemon" 755 0:2000 || fail "Audio dispatcher activation"
 put "$TMP/config" "$CFG" 644 || fail "Player config activation"
 "$BB" sha256sum "$CFG" | "$BB" cut -d' ' -f1 > "$PM/installed-config.sha256" || fail "Installed config receipt"
-echo "Patchman v1.5" > "$PM/version.txt" || fail "Version receipt"
+echo "Patchman v1.5.1" > "$PM/version.txt" || fail "Version receipt"
 MUTATED=0
 "$BB" rm -f /system/vendor/sony-peq/ui/QueueDiagnostic.qml /data/sony-peq/runtime/queue-diagnostic.json /data/sony-peq/runtime/queue-root.json /data/sony-peq/runtime/queue-component.json /contents/sony_queue_diagnostic.json /contents/sony_queue_root.json /contents/sony_queue_component.json /contents/sony_queue_launcher.txt || echo "WARN: diagnostic cleanup incomplete"
 "$BB" rm -rf "$TMP" || echo "WARN: could not remove staging files"

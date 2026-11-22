@@ -1,7 +1,7 @@
 {
   "name": "Patchman",
-  "version": "1.5-stable",
-  "build": "nw-a55-v1.5-stable",
+  "version": "1.5.1-stable",
+  "build": "nw-a55-v1.5.1-stable",
   "target": "NW-A55 / Walkman One 3.02",
   "values": {
     "ORIGINAL_HAGO": "fe4adf07775dc447c18a22a63fb0b59168cce9159bfc509d122ae3d991248a85",
@@ -14,8 +14,8 @@
     "SHIM_SHA": "38d0fadda997b6b94c8785083436218d722dd1c4831d9c3ed8c20f04bedcdb5d",
     "PROFILE_SHA": "590d77e4aa4ba1ce750a307283d31d3b41a6dbb8c79b3e711543393009b4ae5a",
     "SONY_PLAYER": "f515f75e48e84460c18707e5408c6c09c26a77a13deccdee23e220dc81f49124",
-    "BUNDLE_SIZE": "9672284",
-    "BUNDLE_SHA": "603f34912cba198991b3a7cf810ea554c685ace786a38c959d6f88b68d7db9f9",
+    "BUNDLE_SIZE": "9672054",
+    "BUNDLE_SHA": "b489cac41aa27ebf53235b64b89069920a3a9bad5a6cdf2c0a8e6478293761c3",
     "DATA_KIB": "4096",
     "DATA_FALLBACK_KIB": "18788",
     "FILES_KIB": "21440",
@@ -270,7 +270,7 @@
       "name": "player",
       "destination": "$BIN/HgrmMediaPlayerApp.album-test",
       "mode": 755,
-      "sha256": "c7667d5ce808fc5954c5a28b7f04f35f11fd6f1ad49d2c2be274625141c30e34"
+      "sha256": "2678b8a55c696b72db7140dbaa834f91bfc675e691fa884562fe1635437562ea"
     },
     {
       "name": "launcher",
@@ -288,7 +288,7 @@
       "name": "topbar-batteryindicator",
       "destination": "$ROOT/ui/topbar/BatteryIndicator.qml",
       "mode": 644,
-      "sha256": "385aa1c1e67dcd81fc1129865baf1fd180675c29b4d4ed6d0509c687732dca76"
+      "sha256": "233112513ea117e2946ece5088d6f44c6b92c72d70bbe5670aa9c8ab41eee939"
     },
     {
       "name": "topbar-batterystate",
@@ -350,7 +350,7 @@
       "name": "unit-info",
       "offset": 6666790,
       "slot": 2319,
-      "used": 1556
+      "used": 1558
     },
     {
       "name": "main",
@@ -359,7 +359,7 @@
       "used": 5746
     }
   ],
-  "release_date": "2026-11-21",
+  "release_date": "2026-11-22",
   "topbar_resources": [
     {
       "offset": 6287318,
@@ -384,42 +384,38 @@
   ],
   "metadata_resources": [
     {
-      "offset": 6493601,
-      "slot": 1469,
-      "used": 1287
-    },
-    {
       "offset": 6210665,
       "slot": 1943,
-      "used": 1531
+      "used": 1526
     },
     {
       "offset": 6418907,
       "slot": 4333,
-      "used": 3294
+      "used": 4333
+    },
+    {
+      "offset": 6493601,
+      "slot": 1469,
+      "used": 1278
     },
     {
       "offset": 6666790,
       "slot": 2319,
-      "used": 1556
+      "used": 1558
     }
   ],
+  "baseline_zip_sha256": "defa2b99758edc4e7dcd1da9bdf4e5196efc6152bc6dc639b7c052d86a7e3a78",
   "release": {
-    "distribution": "complete-first-install-and-update",
     "public_folders": [
       "Install",
-      "Remove",
-      "ReturnToV1.1"
+      "Remove"
     ],
-    "return_to_v11_bundle_sha256": "dd3c478d49936304144a1e4623e945bc9fd79a152c82db0dbd51f4abda990ef4",
-    "upgrade_baseline": "public v1.1 complete installer; filesystem upgrade and reinstall tested",
-    "unit_information": "Patchman v1.5",
+    "unit_information": "Patchman v1.5.1",
     "upg_sha256": {
-      "Install/Data/Device/NW_WM_FW.UPG": "cbded6e859e2a48e71579101d37b4bf0e5c10ebe4e6ee0899b3f5c4aa82d5d92",
-      "Remove/Data/Device/NW_WM_FW.UPG": "d383ef18af90adbf688f63287d4159b39fa7874ad80de32bf4d8838219a45d1d",
-      "ReturnToV1.1/Data/Device/NW_WM_FW.UPG": "fc7cb26658d5b1f486b5e1686ecdeefc1b87c132a8693058af110e6118d94533"
+      "Install/Data/Device/NW_WM_FW.UPG": "a62bbcf0caab94140b13e09077fd71c315a4f29ce632a11422f7b515739cc736",
+      "Remove/Data/Device/NW_WM_FW.UPG": "803d6c42ff1cb7927ba08d5c64b71cfa203c89b368e76353378f40bd5ab0a8b0"
     },
-    "device_validation": "UI features reported working by author; final v1.5 first installation not separately device-tested",
+    "device_verification": "author confirmed installation and updated UI on NW-A55; clean first install and every charging condition not separately device-tested",
     "source_snapshot_note": "See docs/BUILD.md: original firmware and assets excluded; exact B6 metadata-helper source not recovered."
   }
 }

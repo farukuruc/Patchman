@@ -1,6 +1,6 @@
 {
   "input_sha256": "f515f75e48e84460c18707e5408c6c09c26a77a13deccdee23e220dc81f49124",
-  "output_sha256": "c7667d5ce808fc5954c5a28b7f04f35f11fd6f1ad49d2c2be274625141c30e34",
+  "output_sha256": "2678b8a55c696b72db7140dbaa834f91bfc675e691fa884562fe1635437562ea",
   "resources": [
     {
       "offset": 6191926,
@@ -79,12 +79,6 @@
       "slot": 6092,
       "compressed": true,
       "patch": "patches/qml/611889.json"
-    },
-    {
-      "offset": 6418907,
-      "slot": 4333,
-      "compressed": false,
-      "patch": "patches/qml/61f1db.json"
     },
     {
       "offset": 6493601,

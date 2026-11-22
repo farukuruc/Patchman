@@ -1,19 +1,20 @@
-# Patchman v1.5 source snapshot
+# Patchman v1.5.1 source snapshot
 
-Source code and source-level UI edits for **Patchman v1.5-stable on Sony NW-A55**.
+Source code and source-level UI edits for **Patchman v1.5.1-stable on Sony NW-A55**.
 This folder is for review and development. To install Patchman, use the firmware
 ZIP from Releases and the main repository README. Do not copy this source folder
 to the Walkman.
 
-## Changes from the v1.1 source snapshot
+## Changes included in v1.5.1
 
 - Sorting Options and the native newest/oldest/A–Z/Z–A album-order code.
 - The shared top bar, battery percentage, charging/Full display and speaker icon.
 - Now Playing and mini-player spacing, title size and transport image changes.
-- Continuous long-title scrolling, including display/visibility lifecycle.
+- Original Sony full/mini title scrolling, restoring the native pause and restart behavior.
+- Half-ring battery indicator: white percentage, white remaining arc, dim used arc, charging and FULL labels.
 - Flat shuffle/repeat controls and the new Go to icon.
-- Current Install, Remove and ReturnToV1.1 scripts and release component hashes.
-- Source patches that reproduce the exact released v1.5 player from the supported
+- Current Install and Remove scripts and release component hashes. The public v1.5.1 ZIP has no ReturnTo installer. A legacy return script is retained only for historical reference.
+- Source patches that reproduce the exact released v1.5.1 player from the supported
   original Walkman One player supplied by the user.
 
 The v1.1 PEQ source remains unchanged. Reverse Stereo, the abandoned security
@@ -60,7 +61,7 @@ python3 source/tools/apply-player-patches.py /path/to/original/HgrmMediaPlayerAp
 
 The tool checks the input, every source edit and the complete output hash before
 writing. It never flashes a device. The result must match the player hash in
-`release-manifest.json` exactly; it includes the v1.5 Unit Information label.
+`release-manifest.json` exactly; it includes the v1.5.1 Unit Information label.
 
 Optional host Qt checks, using Qt 5 Quick/QML/Gui/Core development packages:
 
@@ -79,7 +80,7 @@ was not retained separately. The later abandoned Artist-mode source is excluded.
 The released helper's hash is recorded. Other firmware libraries, the original
 Sony executables, artwork and toolchains must be supplied separately.
 
-The `outputs/Patchman-v1.5-Final/build.sh` command in the main release README
+The `outputs/Patchman-v1.5.1/build.sh` command in the main release README
 belongs to the original workspace. It is not a build command supplied by this
 source checkout. See [build notes](docs/BUILD.md) and [provenance](SOURCE-MAP.json).
 Do not claim every compiled binary can be rebuilt from this snapshot alone.
@@ -96,3 +97,5 @@ This snapshot has mixed ownership. It is not a blanket MIT or GPL relicensing.
 Cinder-derived files keep the **PolyForm Noncommercial License 1.0.0** and required
 notice. See [third-party notices](THIRD_PARTY_NOTICES.md) and `LICENSES/`.
 This source export does not grant rights to Sony firmware or Wampy artwork.
+
+The no-op `patches/qml/61f1db.json` is retained for compatibility with older source uploads. It is not part of the active patch list: the original Sony marquee is restored.

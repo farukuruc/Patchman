@@ -19,7 +19,7 @@ def main():
         if p.suffix=='.py':ast.parse(text,filename=str(p))
     spec=json.loads((HERE/'patches/player.json').read_text())
     assert len(spec['resources'])==sources['player_resource_count']
-    assert sources['version']=='1.5-stable'
+    assert sources['version']=='1.5.1-stable'
     manifest=json.loads((HERE/'release-manifest.json').read_text())
     assert manifest['version']==sources['version']
     assert spec['output_sha256']==next(f['sha256'] for f in manifest['files'] if f['name']=='player')
